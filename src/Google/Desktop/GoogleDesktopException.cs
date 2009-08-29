@@ -1,7 +1,9 @@
 /*
 ·--------------------------------------------------------------------·
 | C# Wrapper for Google Desktop Search Plugins                       |
-| Copyright (c) 2005, Manas Tungare. http://www.manastungare.com/    |
+| Copyright (c) 2005 Manas Tungare. http://www.manastungare.com/     |
+| Copyright (c) 2009 gds-dot-net developers.                         |
+| http://code.google.com/p/gds-dot-net/                              |
 ·--------------------------------------------------------------------·
 | This library is free software; you can redistribute it and/or      |
 | modify it under the terms of the GNU Lesser General Public         |
@@ -80,37 +82,26 @@ namespace Org.ManasTungare.Google.Desktop {
       switch (errorCode) {
         case 0x80040001:
           return GoogleErrorCodes.E_EXTENSION_REGISTERED;
-          break;
         case 0x80040002:
           return GoogleErrorCodes.E_COMPONENT_NOT_REGISTERED;
-          break;
         case 0x80040003:
           return GoogleErrorCodes.E_NO_SUCH_SCHEMA;
-          break;
         case 0x80040004:
           return GoogleErrorCodes.E_NO_SUCH_PROPERTY;
-          break;
         case 0x80040005:
           return GoogleErrorCodes.E_COMPONENT_DISABLED;
-          break;
         case 0x80040006:
           return GoogleErrorCodes.E_COMPONENT_ALREADY_REGISTERED;
-          break;
         case 0x80040007:
           return GoogleErrorCodes.S_INDEXING_PAUSED;
-          break;
         case 0x80040008:
           return GoogleErrorCodes.E_EVENT_TOO_LARGE;
-          break;
         case 0x80040009:
           return GoogleErrorCodes.E_SERVICE_NOT_RUNNING;
-          break;
         case 0x8004000A:
           return GoogleErrorCodes.E_INVALID_EVENT_FLAGS;
-          break;
         default:
           return GoogleErrorCodes.E_UNEXPECTED;
-          break;
       }
     }
 

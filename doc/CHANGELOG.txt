@@ -4,7 +4,9 @@
 --------------------------------------------------------------------------
 
  VERSION HISTORY:
-   0.3   WIP           Upgrade project to Visual Studio 2008.
+   0.3   WIP           Upgrade project to Visual Studio 2008. Fix 
+                       compilation warnings. Make line endings consistent 
+                       in source files.
  
    0.2   2005-03-31    Optional properties needed an extra method call
                        to be added correctly; now it is done by a single
