@@ -1,0 +1,1542 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head>
+
+<title>SDK Developer Documentation</title><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style>
+BODY {
+	MARGIN-LEFT: 1em; MARGIN-RIGHT: 1em
+}
+TD {FONT-FAMILY: arial,sans-serif}
+DIV {FONT-FAMILY: arial,sans-serif}
+.p {FONT-FAMILY: arial,sans-serif}
+A {FONT-FAMILY: arial,sans-serif}
+DIV {COLOR: #000}
+TD {COLOR: #000}
+.f {COLOR: #6f6f6f}
+.fl:link {COLOR: #6f6f6f}
+A:link {COLOR: #00c}
+.w {COLOR: #00c}
+A.w:link {COLOR: #00c}
+.w A:link {COLOR: #00c}
+A:visited {COLOR: #551a8b}
+.fl:visited {COLOR: #551a8b}
+A:active {COLOR: #f00}
+.fl:active {COLOR: #f00}
+.t A:link {COLOR: #000}
+.t A:active {COLOR: #000}
+.t A:visited {COLOR: #000}
+.t {COLOR: #000}
+.t {BACKGROUND-COLOR: #e5ecf9}
+.k {BACKGROUND-COLOR: #36c}
+.j {WIDTH: 33em}
+.h {COLOR: #36c}
+.i {COLOR: #a90a08}
+.i:link {COLOR: #a90a08}
+.a {COLOR: #008000}
+.a:link {COLOR: #008000}
+DIV.n {MARGIN-TOP: 1ex}
+.n A {FONT-SIZE: 10pt; COLOR: #000}
+.n .i {FONT-WEIGHT: bold; FONT-SIZE: 10pt}
+.q A:visited {COLOR: #00c}
+.q A:link {COLOR: #00c}
+.q A:active {COLOR: #00c}
+.q {COLOR: #00c}
+.b {FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: #00c}
+.ch {CURSOR: hand}
+.e {MARGIN-TOP: 0.75em; MARGIN-BOTTOM: 0.75em}
+.g {MARGIN-TOP: 1em; MARGIN-BOTTOM: 1em}
+.z {MARGIN-LEFT: 1.25em; MARGIN-RIGHT: 1em}
+.style1 {COLOR: #00c; font-weight: bold;}
+</style></head>
+
+<body topmargin="2" alink="#ff0000" bgcolor="#ffffff" link="#0000cc" text="#000000" vlink="#800080">
+<table border="0" cellpadding="5" cellspacing="0" width="99%">
+  <tbody><tr>
+    <td width="14%"><a href="http://desktop.google.com/index.html"><img alt="Google Desktop Search" src="http://desktop.google.com/images/logo3.gif" border="0" height="55" vspace="12" width="150"></a></td>
+    <td width="86%">
+	  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tbody><tr>
+          <td bgcolor="#3399cc"><img alt="" height="1" width="1"></td>
+        </tr>
+      </tbody></table>
+      <table bgcolor="#e8f4f7" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tbody><tr>
+          <td bgcolor="#e8f4f7" nowrap="nowrap">&nbsp;<font color="#000000" face="arial,sans-serif"><b>Google Desktop Search SDK Developer Guide </b></font></td>
+        </tr>
+      </tbody></table>
+	</td>
+  </tr>
+  <tr valign="top">
+    <td width="14%"><p><font size="-1"><b>For Users</b><br>
+    &nbsp;&nbsp;<a href="http://desktop.google.com/plugins.html">Download Plug-ins</a> <br>
+&nbsp;&nbsp;<a href="http://groups-beta.google.com/group/Google-Desktop-Search">Desktop Search Forum</a></font></p>
+      <p><font size="-1"><b>For Developers<br>
+      </b>&nbsp;&nbsp;<a href="http://desktop.google.com/developer.html">Plug-in Development</a><br>
+	  &nbsp;&nbsp;<a href="http://desktop.google.com/downloadsdksubmit">Download SDK</a><br>
+&nbsp;&nbsp;Developer Guide<br>
+&nbsp;&nbsp;<a href="http://desktop.google.com/pluginsubmit">Submit Software</a><br>
+&nbsp;&nbsp;<a href="http://groups-beta.google.com/group/Google-Desktop-Developer">Developer Forum</a></font></p>
+    </td>
+    <td>
+      <font sans-serif="" face="arial,"><b><a name="top"></a>Contents</b></font>
+      <p><font size="-1"><a href="#overview"><b>Overview</b></a></font></p>
+<ul>
+  <li><font size="-1"><a href="#gettingstarted">Getting Started</a></font></li>
+  <li><font size="-1"><a href="#devprocess">Development Process Overview</a></font></li>
+  <li><font size="-1"><a href="#sdk">SDK Overview</a></font></li>
+  </ul>
+<p><font size="-1"><b><a href="#eventschemas">Event Schemas</a></b></font></p>
+<p><font size="-1">        <a href="#indexingapi"><b>GDS Developer Indexing API</b></a></font></p>
+<ul>
+  <li><font size="-1"><a href="#registering">Registering Components with GDS</a></font></li>
+  <li><font size="-1"><a href="#crawler">Crawler Notification Registration</a></font></li>
+  <li><font size="-1">          <a href="#creating">Creating and Sending Events</a></font></li>
+  <li><font size="-1"><a href="#handling">        Handling GDS Crawler Notifications</a></font></li>
+  <li><font size="-1">        <a href="#howto">Writing and Distributing Your GDS Plug-in</a></font></li>
+  </ul>
+<p><font size="-1">        <a href="#searchapi"><b>GDS Developer Search API</b></a> </font></p>
+<ul>
+  <li><font size="-1"><a href="#requesting">Requesting a Desktop Search</a></font></li>
+  <li><font size="-1"><a href="#results">Desktop Search Results</a> </font></li>
+</ul>
+<p><font size="-1">        <a href="#xmlschemas"><b>Event Schema XML Definitions</b></a> </font></p>
+<p>        <a href="#idlfile"><b><code>GoogleDesktopSearchAPI.idl</code></b></a><font size="-1"><a href="#idlfile"><b> Interface Definitions</b></a> </font></p>
+<font size="-1"><br>
+  </font><a name="overview" id="overview"></a> <b>Overview</b>  <hr align="left" color="#3399cc" noshade="noshade" size="1">
+  <h4> <a name="gettingstarted"></a>Getting Started </h4>
+  <p> <font size="-1">Google
+Desktop Search (GDS) indexes, caches, and searches content on your
+computer. Through the GDS Software Development Kit's APIs, your
+applications can send content to the GDS engine for indexing and
+storage, as well as send search queries directly to GDS. In particular,
+you can write plug-ins that allow GDS to store and search content from
+applications that it doesn't already handle.</font></p>
+  <p><font size="-1"> To integrate your application with GDS you will need, in addition to the information in this document: </font></p>
+  <ul>
+    <li><font size="-1">
+Sufficient access to write a plug-in for your application and an
+installer for it and/or an understanding of your application's file
+format. </font></li>
+    <li><font size="-1"> Basic programming knowledge of the Microsoft Windows Component Object Model (COM). </font></li>
+  </ul>
+  <p><font size="-1">
+If you only want your application to perform GDS searches, all you'll
+need to know is how to issue an HTTP request and receive and process an
+XML-format HTTP response.</font></p>
+  <h4> <a name="devprocess" id="devprocess"></a>Development Process Overview </h4>
+  <p> <font size="-1">To develop a GDS application, start by downloading the SDK, in particular the </font><code><a href="#idlfile">GoogleDesktopSearchAPI.idl</a></code><font size="-1"> file. We recommend developing your application with Microsoft Visual Studio.</font></p>
+  <p><font size="-1"> You will then need to write code (in any COM compatible language) that uses the GDS API to: </font></p>
+  <ul>
+    <li><font size="-1"> Register your application with GDS (required). </font></li>
+    <li><font size="-1"> Register with GDS to handle one or more file extensions (optional). </font></li>
+    <ul>
+      <li><font size="-1">
+If you do this registration, the GDS crawler will notify your plug-in
+whenever it encounters a file with the registered extension. </font></li>
+    </ul>
+    <li><font size="-1"> One of: </font></li>
+    <ul>
+      <li><font size="-1"> Create a GDS event object from scratch. </font></li>
+      <li><font size="-1"> In response to a GDS notification about a file, create a GDS event object. </font></li>
+    </ul>
+    <li><font size="-1"> Set the event object's property values, and then send it to GDS. </font></li>
+    <li><font size="-1"> Unregister your application with GDS when your application uninstalls. </font></li>
+  </ul>
+  <p><font size="-1">
+We recommend that you look over the sample code provided with the SDK,
+as well as the basic GDS API operation C++ code templates provided in
+this document. Please note that the sample code examples have their
+GUIDs hardcoded, so if you choose to reuse code from there you must
+change the interfaceIDs, classIDs, and libIDs to ones valid for your
+application.</font></p>
+  <h4> <a name="sdk"></a>SDK Overview </h4>
+  <p> <font size="-1">The Google Desktop Search SDK consists of the following: </font></p>
+  <ul>
+    <li><font size="-1"> <a href="#eventschemas">Event Schemas</a> </font></li>
+    <li><font size="-1"> <a href="#indexingapi">Developer Indexing API </a></font></li>
+    <li><font size="-1"> <a href="#searchapi">Developer Search API</a> </font></li>
+  </ul>
+  <p><font size="-1">
+The GDS engine processes event objects sent to it by external
+components. An event object consists of the content data you want the
+engine to index and store, as well as additional meta-information and
+properties about that content or the event object. </font></p>
+  <p><font size="-1"> The Event Schemas specify the allowed event types, and the relevant properties for each event type.</font></p>
+  <p><font size="-1">
+The Developer Indexing API consists of interfaces used to construct
+event objects and send them to GDS, register to receive notifications
+from the GDS crawler, and for registering your application with GDS.</font></p>
+  <p><font size="-1">
+The Developer Search API is much simpler. It consists of sending an
+HTTP request to Google Desktop Search that contains your search query
+terms. The HTTP response contains the desktop search results in XML
+format.</font><font size="-1">        </font></p>
+  <div align="right"><font size="-2"><a href="#top">Back to top</a></font></div>
+  <a name="eventschemas" id="eventschemas"></a>
+        <b>Event Schemas </b>        <hr align="left" color="#3399cc" noshade="noshade" size="1">
+        <p><font size="-1">Event objects are all defined by <i>event schemas</i>,
+which specify what information and properties a particular event type
+can contain. Event schemas are all pre-defined by Google; you cannot
+add to or modify the schema set. There are event schemas for: </font>
+        </p><ul>
+          <li><font size="-1">Files (with subschemas for text files, web pages, and media files) </font>
+          </li><li><font size="-1">Email messages </font>
+          </li><li><font size="-1">IM messages</font></li>
+        </ul>
+        <p><font size="-1">Schemas are described using XML and each contains a set of <i>schema properties</i>. Each property has various attributes such as </font><code>name</code>, <code>type</code>, <code>required</code>,<font size="-1"> etc.</font></p>
+        <p><font size="-1">Schemas
+are organized in a parent-child relationship hierarchy, with children
+inheriting properties from their parent. The current hierarchy consists
+of three levels, with </font><code>Google.Desktop.Indexable</code><font size="-1"> as the base schema. Schemas are identified by their fully qualified name, such as </font><code>Google.Desktop.IM</code>. </p>
+        <p><font size="-1">When
+constructing an event object, you will first choose the appropriate
+schema, create an event object based on that schema, and then set its
+property values. For example, in order to index a text file's content,
+a component will use the</font> <code>Google.Desktop.TextFile</code> <font size="-1">schema to create an event object. The component will then set the event's </font><code>content</code><font size="-1"> property to contain the file's indexable content and specify the content's format (</font><code>text/plain</code><font size="-1"> or </font><code>text/html</code><font size="-1">) in the </font><code>format</code> <font size="-1">property. It will also set the </font><code>uri</code><font size="-1"> property with the file's location and the </font><code>last_modified_time</code><font size="-1">
+property with the file's access time. Those properties are all
+required; the component may or may not set the optional properties,
+such as the </font><code>author</code><font size="-1"> or</font> <code>title</code><font size="-1"> properties. Remember, </font><code>Google.Desktop.TextFile</code><font size="-1"> inherits properties from both its ancestors, </font><code>Google.Desktop.Indexable</code> <font size="-1">and </font><code>Google.Desktop.File</code><font size="-1">.</font></p>
+        <p><font size="-1">Full XML schema descriptions are given <a href="#xmlschemas">here</a>,
+with the property type attributes expressed using the Windows VARIANT
+data types. The following summarizes each schema and its properties,
+including allowed values and whether a property is required as well as
+some usage notes. Remember, in the current release, all other schemas
+inherit properties from </font><code>Google.Desktop.Indexable</code><font size="-1">. In particular, the required </font><code>content</code><font size="-1"> and </font><code>format</code><font size="-1"> properties for every event object are inherited from there.</font></p>
+        <p><code><font size="3"><b>Google.Desktop.Indexable</b></font></code>
+        </p><p><font size="-1"><b>Note:</b> This is an abstract schema. You cannot instantiate any event objects of type </font><code>Google.Desktop.Indexable</code><font size="-1">. Use one of its descendent schemas instead. </font></p>
+        <p><font size="-1"><b>Note:</b>
+Event objects cannot exceed a size that varies depending on machine
+characteristics. This averages several hundred thousand KB. If you send
+too large an event object to GDS, GDS will first truncate the event
+object's </font><code>content</code> <font size="-1">property's value until the total event object size is equal to the maximum allowed size. If all of the </font><code>content</code> <font size="-1">property's value has been removed and the event object is still too big, GDS will reject the event object.</font></p>
+
+       <table border="1" cellpadding="3" cellspacing="0" width="90%">
+          <tbody><tr bgcolor="#e8f4f7">
+            <td><b><font face="Arial, Helvetica, sans-serif" size="-1">Property</font></b></td>
+            <td><b><font face="Arial, Helvetica, sans-serif" size="-1">Description</font></b></td>
+            <td><b><font size="-1">Type</font></b></td>
+            <td><b><font face="Arial, Helvetica, sans-serif" size="-1">Required</font></b></td>
+          </tr>
+          <tr>
+            <td><font face="Arial, Helvetica, sans-serif"><code>content</code></font></td>
+            <td><font face="Arial, Helvetica, sans-serif" size="-1">Contains
+the content to be indexed. The content must be in a text format (which
+can include HTML or similar markup, although GDS will only treat HTML
+markup differently from plain text) not binary data. Note that some
+items may not have any indexable content, such as media files for which
+GDS only indexes metadata and email messages with no content in their
+body. For those items, set this property to an empty string.&nbsp;</font></td>
+            <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+            <td><font face="Arial, Helvetica, sans-serif" size="-1">Yes</font></td>
+          </tr>
+          <tr>
+            <td><font face="Arial, Helvetica, sans-serif"><code>format</code></font></td>
+            <td><font face="Arial, Helvetica, sans-serif" size="-1">Mime type of the indexable content, allowed values are </font><font face="Arial, Helvetica, sans-serif"><code>text/plain</code></font><font face="Arial, Helvetica, sans-serif" size="-1"> and</font><font face="Arial, Helvetica, sans-serif"> <code>text/html</code></font><font face="Arial, Helvetica, sans-serif" size="-1">. </font></td>
+            <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+            <td><font face="Arial, Helvetica, sans-serif" size="-1">Yes</font></td>
+          </tr>
+          <tr>
+            <td><font face="Arial, Helvetica, sans-serif"><code>native_size</code> </font></td>
+            <td><font face="Arial, Helvetica, sans-serif" size="-1">Size
+of the indexable content in bytes. Note that for file types for which
+there is no indexable content but still contain content, such as media
+files, you should set this property to be the size of the content. For
+example, for a 10 Megabyte audio file, you wouldn't put the 10 MB of
+content in an event's </font><font face="Arial, Helvetica, sans-serif"><code>content</code></font><font face="Arial, Helvetica, sans-serif" size="-1"> property, but you should set its </font><font face="Arial, Helvetica, sans-serif"><code>native_size</code></font><font face="Arial, Helvetica, sans-serif" size="-1"> property to </font><font face="Arial, Helvetica, sans-serif"><code>10000000</code></font><font face="Arial, Helvetica, sans-serif" size="-1">. </font></td>
+            <td><font face="Arial, Helvetica, sans-serif"><code>VT_UI8</code></font></td>
+            <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+          </tr>
+          <tr>
+            <td><font face="Arial, Helvetica, sans-serif"><code>thumbnail</code></font></td>
+            <td><font face="Arial, Helvetica, sans-serif" size="-1">Thumbnail
+image of the content. We recommend the image be 109 pixels wide by 75
+pixels tall. Image files of more than 20 KB will be rejected with an
+invalid argument error. If you specify a thumbnail image, you must also
+set a value for the following </font><font face="Arial, Helvetica, sans-serif"><code>thumbnail_format</code></font><font face="Arial, Helvetica, sans-serif" size="-1"> property. </font></td>
+            <td><font face="Arial, Helvetica, sans-serif"><code>VT_ARRAY</code></font></td>
+            <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+          </tr>
+          <tr>
+            <td><font face="Arial, Helvetica, sans-serif"><code>thumbnail_format</code> </font></td>
+            <td><font face="Arial, Helvetica, sans-serif" size="-1">Mime type of the thumbnail image, allowed values are </font><font face="Arial, Helvetica, sans-serif"><code>image/gif</code>, <code>image/jpeg</code></font><font face="Arial, Helvetica, sans-serif" size="-1">, and </font><font face="Arial, Helvetica, sans-serif"><code>image/png</code></font><font face="Arial, Helvetica, sans-serif" size="-1">. </font></td>
+            <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+            <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+          </tr>
+      </tbody></table>
+      <blockquote><font size="-1"></font>
+<p></p>
+      <p><code><font size="3"><b><br>
+        Google.Desktop.Email</b></font></code> <font size="-1"> inherits</font> <code><font size="3"><b>Google.Desktop.Indexable</b></font></code>
+      </p><p><font size="-1"><b>Note:</b> In general, you should either only set an email event object's</font> <code>header</code><font size="-1"> property with everything in a message's header, or only set the individual header field properties such as </font><code>subject</code>, <code>to</code>,<font size="-1"> etc. If you set the </font><code>header</code><font size="-1"> property, the GDS engine will parse out the separate fields and their contents. If you specify values for both </font><code>header</code> <font size="-1">and individual field properties, the individual field values will take precedence.</font></p>
+      <p><font size="-1"><b>Note: </b>There
+is currently no property for email attachments. Your plug-in can copy
+each attachment on an email message to a location on your file system
+so that the GDS crawler will encounter them. Then, if its file
+extension is handled by GDS (or a plug-in), each attachment's content
+will be indexed and cached by GDS. However, the attachment(s) content
+will not be associated with the email message within either GDS or any
+desktop search results.</font></p>
+        <table border="1" cellpadding="3" cellspacing="0" width="85%">
+          <tbody><tr bgcolor="#e8f4f7">
+            <td><b><font face="Arial, Helvetica, sans-serif" size="-1">Property</font></b></td>
+            <td><b><font face="Arial, Helvetica, sans-serif" size="-1">Description</font></b></td>
+            <td><b><font size="-1">Type</font></b></td>
+            <td><b><font face="Arial, Helvetica, sans-serif" size="-1">Required</font></b></td>
+          </tr>
+          <tr>
+            <td><font face="Arial, Helvetica, sans-serif"><code>mail_header</code></font></td>
+            <td><font size="-1">Message's entire mail header as received in the mail envelope.</font></td>
+            <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+            <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+          </tr>
+          <tr>
+            <td><font face="Arial, Helvetica, sans-serif"><code>subject</code></font></td>
+            <td><font size="-1">Message's Subject: field contents.</font></td>
+            <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+            <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+          </tr>
+          <tr>
+            <td><font face="Arial, Helvetica, sans-serif"><code>from</code> </font></td>
+            <td><font size="-1">Message's
+From: field contents as it appears in the mail header (we recommend all
+of it, both address, and if present, the addressee's name). </font></td>
+            <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+            <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+          </tr>
+          <tr>
+            <td><font face="Arial, Helvetica, sans-serif"><code>to</code></font></td>
+            <td><font size="-1">Message's To: field contents (we recommend all of it, both address and, if present, the addressee's name). </font></td>
+            <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+            <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+          </tr>
+          <tr>
+            <td><font face="Arial, Helvetica, sans-serif"><code>cc</code> </font></td>
+            <td><font size="-1">Message's Cc: field contents (we recommend all of it, both address and, if present, the addressee's name).</font></td>
+            <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+            <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+          </tr>
+          <tr>
+            <td><font face="Arial, Helvetica, sans-serif"><code>bcc</code> </font></td>
+            <td><font size="-1">Message's Bcc: field contents (we recommend all of it, both address and, if present, the addressee's name). </font></td>
+            <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+            <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+          </tr>
+          <tr>
+            <td><font face="Arial, Helvetica, sans-serif"><code>replyto</code> </font></td>
+            <td><font size="-1">Message's ReplyTo: field contents (we recommend all of it, both address and, if present, the addressee's name). </font></td>
+            <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+            <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+          </tr>
+          <tr>
+            <td><font face="Arial, Helvetica, sans-serif"><code>received</code> </font></td>
+            <td><font size="-1">Message's received time in UTC. </font></td>
+            <td><font face="Arial, Helvetica, sans-serif"><code>VT_DATE</code></font></td>
+            <td><font face="Arial, Helvetica, sans-serif" size="-1">Yes</font></td>
+          </tr>
+          <tr>
+            <td><font face="Arial, Helvetica, sans-serif"><code>folder_name</code> </font></td>
+            <td><font size="-1">Message's folder name.</font></td>
+            <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+            <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+          </tr>
+        </tbody></table>
+        <p><br>
+        <code><font size="3"><b>Google.Desktop.IM</b></font></code> <font size="-1"> inherits</font> <code><font size="3"><b>Google.Desktop.Indexable</b></font></code>        </p>
+        <p><font size="-1"><b>Note:</b> </font><font size="-1"> When setting the inherited content property for IM events, each message should be of the form &lt;<i>name of sender</i>&gt;: &lt;<i>msg</i>&gt;. This allows GDS to correctly format the content when displaying it as a result. </font></p>
+
+          <table border="1" cellpadding="3" cellspacing="0" width="85%">
+            <tbody><tr bgcolor="#e8f4f7">
+              <td><b><font face="Arial, Helvetica, sans-serif" size="-1">Property</font></b></td>
+              <td><b><font face="Arial, Helvetica, sans-serif" size="-1">Description</font></b></td>
+              <td><b><font size="-1">Type</font></b></td>
+              <td><b><font face="Arial, Helvetica, sans-serif" size="-1">Required</font></b></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>conversation_id</code></font></td>
+              <td><font size="-1"> Id that can be used to group messages that are part of the same conversation.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_UI4</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>message_time</code></font></td>
+              <td><font size="-1"> Time when the message was received in UTC.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_DATE</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">Yes</font></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>title</code> </font></td>
+              <td><font size="-1">Title of the Instant Message. This will usually be your choice, as IMs don't usually have actual titles. </font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>user_name</code></font></td>
+              <td><font size="-1">Name or handle of the user who is using the computer on which this event is being generated. </font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>buddy_name</code> </font></td>
+              <td><font size="-1"> Name or handle of the other user in the conversation.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">Yes</font></td>
+            </tr>
+        </tbody></table>
+
+          <p><br>
+        <code><font size="3"><b>Google.Desktop.File</b></font></code> <font size="-1"> inherits</font> <code><font size="3"><b>Google.Desktop.Indexable</b></font></code> </p>
+          <table border="1" cellpadding="3" cellspacing="0" width="85%">
+            <tbody><tr bgcolor="#e8f4f7">
+              <td><b><font face="Arial, Helvetica, sans-serif" size="-1">Property</font></b></td>
+              <td><b><font face="Arial, Helvetica, sans-serif" size="-1">Description</font></b></td>
+              <td><b><font size="-1">Type</font></b></td>
+              <td><b><font face="Arial, Helvetica, sans-serif" size="-1">Required</font></b></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>uri</code></font></td>
+              <td><font size="-1">The file's URI.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">Yes</font></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>last_modified_time</code></font></td>
+              <td><font size="-1">When the file was last modified in UTC.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_DATE</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">Yes</font></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>title</code> </font></td>
+              <td><font size="-1"> What title you choose to give the file, usually its filename.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>author</code></font></td>
+              <td><font size="-1"> The file's author. </font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+            </tr>
+          </tbody></table>
+          <blockquote>
+            <p><code><font size="3"><b><br>
+            Google.Desktop.WebPage</b></font></code> <font size="-1"> inherits</font> <code><font size="3"><b>Google.Desktop.File</b></font></code> </p>
+
+          <table border="1" cellpadding="3" cellspacing="0" width="80%">
+            <tbody><tr bgcolor="#e8f4f7">
+              <td><b><font face="Arial, Helvetica, sans-serif" size="-1">Property</font></b></td>
+              <td><b><font face="Arial, Helvetica, sans-serif" size="-1">Description</font></b></td>
+              <td><b><font size="-1">Type</font></b></td>
+              <td><b><font face="Arial, Helvetica, sans-serif" size="-1">Required</font></b></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>bookmarked</code></font></td>
+              <td><font size="-1">Specifies if this web page is bookmarked.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_BOOL</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>interaction_period</code></font></td>
+              <td><font size="-1"> Amount of time the user interacted with the web page.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_DATE</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+            </tr>
+            </tbody></table>
+		  <p><br>
+		    <code><font size="3"><b>Google.Desktop.TextFile</b></font></code> <font size="-1"> inherits</font> <code><font size="3"><b>Google.Desktop.File</b></font></code> </p>
+          <p><font size="-1">No distinctive properties yet.
+</font></p>
+          <p><font size="-1"><br>
+          </font><code><font size="3"><b>Google.Desktop.MediaFile</b></font></code> <font size="-1"> inherits</font> <code><font size="3"><b>Google.Desktop.File</b></font></code> </p>
+          <table border="1" cellpadding="3" cellspacing="0" width="80%">
+            <tbody><tr bgcolor="#e8f4f7">
+              <td><b><font face="Arial, Helvetica, sans-serif" size="-1">Property</font></b></td>
+              <td><b><font face="Arial, Helvetica, sans-serif" size="-1">Description</font></b></td>
+              <td><b><font size="-1">Type</font></b></td>
+              <td><b><font face="Arial, Helvetica, sans-serif" size="-1">Required</font></b></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>width</code></font></td>
+              <td><font size="-1"> Image or video width in pixels.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_UI4</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>height</code></font></td>
+              <td><font size="-1">Image or video height in pixels.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_UI4</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>bit_rate</code></font></td>
+              <td><font size="-1"> Audio content (in either an audio or video file) average bit rate in bits/second.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_UI4</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>data_rate</code></font></td>
+              <td><font size="-1">Data rate for video files in bytes/second.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_UI4</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>channels</code></font></td>
+              <td><font size="-1"> Channel count for audio files.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_UI4</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>comment</code></font></td>
+              <td><font size="-1">Comment about the file and its contents.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>length</code></font></td>
+              <td><font size="-1"> Music or video file time length in nanoseconds.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_UI8</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>original_date</code></font></td>
+              <td><font size="-1">Original file time stamp from the media device in UTC.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_DATE</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>album_title</code></font></td>
+              <td><font size="-1"> Music file album title.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>artist</code></font></td>
+              <td><font size="-1">Artist who created/performed the content.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+            </tr>
+			<tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>genre</code></font></td>
+              <td><font size="-1">Genre category.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>lyrics</code></font></td>
+              <td><font size="-1"> Music file lyrics.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>track_number</code></font></td>
+              <td><font size="-1">Song's track number on its album.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_UI4</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+            </tr>
+			    <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>info_tip</code></font></td>
+              <td><font size="-1"> Info tip as reported from the shell.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_BSTR</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+            </tr>
+            <tr>
+              <td><font face="Arial, Helvetica, sans-serif"><code>year_published</code></font></td>
+              <td><font size="-1">Year this material was first published.</font></td>
+              <td><font face="Arial, Helvetica, sans-serif"><code>VT_UI4</code></font></td>
+              <td><font face="Arial, Helvetica, sans-serif" size="-1">No</font></td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </blockquote>
+
+	  <div align="right"><font size="-2"><a href="#top">Back to top</a></font></div>
+	  <a name="indexingapi" id="indexingapi"></a> <b>GDS Developer Indexing API</b>
+      <hr align="left" color="#3399cc" noshade="noshade" size="1">
+      <h4><a name="registering" id="registering"></a>Registering Components with GDS      </h4>
+      <p> <font size="-1">GDS will not accept any event objects from unregistered components. GDS registration is a one-time process done using the </font><code>IGoogleDesktopSearchComponentRegister</code><font size="-1">
+interface, and should be done during component installation. As part of
+the registration process, the component must provide its GUID as well
+as information about itself that will be added to the GDS preferences
+page. GDS automatically modifies its UI so that users can choose
+whether or not to have new item types indexed and stored.</font></p>
+      <p><font size="-1"> As part of its own uninstallation process, a component should unregister itself with GDS.</font></p>
+       <font size="-1"><b>Component Registration Interface Summary </b></font>       <p> <font size="-1">The following summarizes the interface and its methods. All method return values are of type</font> <code>HRESULT</code><font size="-1">. </font></p>
+      <code>interface IGoogleDesktopSearchComponentRegister: IDispatch</code>
+        <ul>
+          <li> <font size="-1"><b>Note:&nbsp;</b>Components
+are required to to call this interface to register themselves with
+Google Desktop Search before they can send event objects to it or
+receive crawler notifications from it. </font></li><br>
+          <li> <font size="-1"><b>Note:</b>&nbsp;For
+plug-ins or executables that want to generate event objects, we require
+that they register a classID or progID so that an unique ID for those
+event objects can be generated. </font></li><br>
+          <li><code>RegisterComponent</code><font size="-1">: Must be invoked by any component interested in either generating event objects or receiving crawler notifications. </font></li>
+          <ul>
+            <li><font size="-1"><i> Arguments</i>: </font></li>
+            <ul>
+              <li> <code>BSTR component_guid_or_progid</code><font size="-1">: The component's GUID or ProgID.</font> </li>
+              <li> <code>VARIANT</code> <font size="-1">component_description: A </font><code>SAFEARRAY</code> <font size="-1">of
+pairs, where the first element is a descriptive parameter name and the
+second element is that parameter's value. The method expects only the
+following three required parameters, which should be given in this
+order. </font></li>
+              <ul>
+                <li> <font size="-1">"</font><code>Title</code><font size="-1">": Component title that will be displayed on the GDS preferences page. </font></li>
+                <li> <font size="-1">"</font><code>Description</code><font size="-1">": Component description that will be displayed on the GDS preferences page. </font></li>
+                <li> <font size="-1">"</font><code>Icon</code><font size="-1">": A string pointing to an ICON resource, of the form "</font><code>c:\program files\boo\comp.dll,23</code><font size="-1">". This icon may be
+used to indicate the component and its results on various GDS pages.</font></li>
+              </ul>
+              <li> <code>[out, retval] IGoogleDesktopSearchComponentRegistration **registration</code><font size="-1">: Pointer used to return a GDS registration object. </font></li>
+            </ul>
+            <li><i><font size="-1">Returns</font></i><font size="-1">: </font></li>
+            <ul>
+              <li> <code>[out, retval] IGoogleDesktopSearchComponentRegistration **registration</code><font size="-1">, Pointer to a GDS registration object. </font></li>
+              <li> <code>S_OK</code> <font size="-1">if successful. </font></li>
+              <li> <code>E_COMPONENT_ALREADY_REGISTERED</code> <font size="-1">if this component has already been registered with GDS.</font></li>
+              <li> <font size="-1">Appropriate error on failure, such as an unregistered component classID or appID, component prohibited by policy, etc. </font></li>
+            </ul>
+          </ul><br>
+          <li> <code>UnregisterComponent</code></li>
+          <ul>
+            <li><i> <font size="-1">Arguments</font></i><font size="-1">: </font></li>
+            <ul>
+              <li> <code>BSTR component_guid_or_progid</code>: <font size="-1">the same GUID used when registering the component. </font></li>
+            </ul>
+            <li><i> <font size="-1">Returns</font></i><font size="-1">: </font></li>
+            <ul>
+              <li> <code>S_OK</code><font size="-1"> if successful. </font></li>
+              <li><font size="-1"> Appropriate error on failure. </font></li>
+            </ul>
+          </ul>
+        </ul>
+
+        <b><font size="-1">Component Registration Code Template
+        </font> </b>
+        <p> <font size="-1">The following template uses the fictional </font><code>MyComponent</code><font size="-1">, which deals with </font><code>.myc</code> <font size="-1">files.
+We use the prefix "mc" on variable names to represent "MyComponent".
+Note that this registration should only be done once, not every time
+the plug-in starts. </font></p>
+      <p><font size="-1"> To register a component:</font><br>
+          <br>
+          <font face="Courier New, Courier, mono" size="-1">CComPtr mcRegister; <br>
+  HRESULT hr;<br>
+  <br>
+  // CLSID_GoogleDesktopSearchRegister is defined in the IDL file.<br>
+  hr = mcRegister.CoCreateInstance(CLSID_GoogleDesktopSearchRegister);<br>
+  <br>
+  if (SUCCEEDED(hr)) {<br>
+&nbsp;&nbsp;ATLASSERT(mcRegister!= NULL);<br>
+  <br>
+&nbsp;&nbsp;// Component description is 6 strings, representing 3 name-value pairs.<br>
+&nbsp;&nbsp;CComSafeArray arr_descr(6);<br>
+  <br>
+&nbsp;&nbsp;arr_descr.SetAt(0, CComVariant(L"Title"));<br>
+&nbsp;&nbsp;arr_descr.SetAt(1, CComVariant(title));<br>
+&nbsp;&nbsp;arr_descr.SetAt(2, CComVariant(L"Description"));<br>
+&nbsp;&nbsp;arr_descr.SetAt(3, CComVariant(description));<br>
+&nbsp;&nbsp;arr_descr.SetAt(4, CComVariant(L"Icon"));<br>
+&nbsp;&nbsp;arr_descr.SetAt(5, CComVariant(icon));<br>
+  <br>
+&nbsp;&nbsp;// Our CLSID in string format<br>
+&nbsp;&nbsp;CComBSTR clsid(clsid);<br>
+  <br>
+&nbsp;&nbsp;// Wrap description array in variant<br>
+&nbsp;&nbsp;CComVariant descr(arr_descr.m_psa);<br>
+&nbsp;&nbsp;CComPtr mcRegistration;<br>
+  <br>
+&nbsp;&nbsp;// And register. The final argument here is the return parameter for the GDS registration object<br>
+&nbsp;&nbsp;// that's returned in addition to the HRESULT value.<br>
+&nbsp;&nbsp;hr = mcRegister-&gt;RegisterComponent(clsid, descr, &amp;mcRegistration);<br>
+  <br>
+&nbsp;&nbsp;if (FAILED(hr))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return hr;<br>
+  }</font><br>
+  <br>
+  <font face="Courier New, Courier, mono" size="-1">return hr; </font></p>
+      <p> <font size="-1">To unregister a component:</font><br>
+          <br>
+          <font face="Courier New, Courier, mono" size="-1">CComPtr mcRegister; <br>
+  HRESULT hr;<br>
+  <br>
+  hr = mcRegister.CoCreateInstance(CLSID_GoogleDesktopSearchRegister);<br>
+  <br>
+  if (SUCCEEDED(hr)) {<br>
+&nbsp;&nbsp;// Our CLSID in string format<br>
+&nbsp;&nbsp;CComBSTR bstrClsid(clsid);<br>
+  <br>
+&nbsp;&nbsp;hr = mcRegister-&gt;UnregisterComponent(bstrClsid);<br>
+  }<br>
+  <br>
+  return hr; </font></p>
+      <h4><a name="crawler" id="crawler"></a>Crawler Notification Registration</h4>
+      <p>  <font size="-1">You
+can also register with GDS to tell it that your component will handle
+files with a particular file extension (or a set of file extensions).
+If you do this registration, the GDS crawler will notify your component
+whenever it encounters a file with the registered extension. </font></p>
+      <p><font size="-1"> For example, a component can register to handle files with the extension </font><code>.myc</code><font size="-1">. To register that your component will handle files with a particular extension, use </font><code>RegisterExtension</code><font size="-1"> from the </font><code>IGoogleDesktopSearchComponentRegistration</code><font size="-1"> interface. </font></p>
+      <p><font size="-1">
+Note that this is different from the previously described overall
+registration of your component with GDS. Also, GDS crawler event
+notification is only necessary if your component isn't always aware of
+its events. For example, an Instant Message component creates its own
+events (the messages), which would not be detected by the GDS crawler.
+So you wouldn't need to register it to receive GDS crawler event
+notifications. On the other hand, components which handle files
+probably should register for GDS crawler notifications for the
+appropriate file extensions, instead of implementing their own crawler
+functionality. </font></p>
+      <p><font size="-1"> Only one
+component at a time can be registered to handle a particular file
+extension. If another component has already registered with GDS on this
+machine to handle your file extension, </font><code>RegisterExtension</code><font size="-1"> will return the error </font><code>E_EXTENSION_REGISTERED</code><font size="-1">. </font></p>
+    <p><font size="-1">
+If done, crawler event notification registration code should be put
+immediately after the general GDS registration code, as it should also
+only be executed once when the component is installed. </font><code>RegisterExtension</code><font size="-1"> takes as an argument a pointer to the GDS registration object returned by </font><code>RegisterComponent</code><font size="-1">. </font></p>
+    <p><font size="-1"><b>Crawler Event Registration Interface Summary</b></font> </p>
+    <p><font size="-1">The following summarizes the interface and its method. The method returns an </font><code>HRESULT</code><font size="-1">. </font></p>
+    <code>interface IGoogleDesktopSearchComponentRegistration: IDispatch</code>
+    <ul>
+      <li> <code>RegisterExtension</code></li>
+      <ul>
+        <li><font size="-1"><i> Arguments</i>: </font></li>
+        <ul>
+          <li> <code>BSTR extension_handled</code><font size="-1">:
+file extension you're telling GDS that this component handles (e.g. txt
+, mp3 , doc , etc. Note that the . is not included as part of the
+extension value).</font> </li>
+          </ul>
+        <li><i><font size="-1">Returns</font></i><font size="-1">: </font></li>
+        <ul><li> <code>S_OK</code> <font size="-1">if successful. </font></li>
+          <li>  <code>E_EXTENSION_REGISTERED</code><font size="-1"> if the extension_handled value has already been registered. The previous registration takes precedence. </font></li>
+          <li><font size="-1">Other appropriate error code</font></li>
+          </ul>
+      </ul>
+      </ul> <b><font size="-1">Crawler Event Registration Code Template </font></b>      <p> <font size="-1">The following template uses the fictional </font><code>MyComponent</code><font size="-1">, which deals with </font><code>.myc</code><font size="-1"> files. Variable names are prefaced by "mc" for "MyComponent".</font> <br>
+        <br>
+        <font face="Courier New, Courier, mono" size="-1">// After a successful component registration, to register an extension use the <br>
+  // IGoogleDesktopSearchComponentRegistration object returned by the RegisterComponent call.<br>
+  // Replace "myc" with the file extension your component handles<br>
+  hr = mcRegistration-&gt;RegisterExtension(CComBSTR(L"myc"));<br>
+  <br>
+  // Revoke our registration in case the extension fails to register<br>
+  if (FAILED(hr)) {<br>
+&nbsp;&nbsp;&nbsp;// Ignore the error - we've already failed<br>
+&nbsp;&nbsp;&nbsp;// If desired, you can write special handling for an E_EXTENSION_REGISTERED error.<br>
+&nbsp;&nbsp;&nbsp;HRESULT ignore;<br>
+  <br>
+&nbsp;&nbsp;&nbsp;// Since we couldn't register the extension, we won't be using this<br>
+&nbsp;&nbsp;&nbsp;// component, so we should unregister the component.<br>
+&nbsp;&nbsp;&nbsp;ignore = mcRegister-&gt;UnregisterComponent(CComBSTR(CLSID_MyComponent));<br>
+  } </font></p>
+      <h4><a name="creating" id="creating"></a>Creating and Sending Events</h4>
+      <p><font size="-1">After a successful registration with GDS, a component can use the </font><code>CreateEvent</code><font size="-1"> method from the </font><code>IGoogleDesktopSearchEventFactory</code><font size="-1">
+interface to create a GDS event object based on any of the defined
+event schemas. Next, set the event object's properties via the </font><code>AddProperty</code><font size="-1"> method from the </font><code>IGoogleDesktopSearchEvent</code><font size="-1"> interface. After setting all the relevant properties, use the</font> <code>Send</code> <font size="-1">method from the same interface to send the event object to GDS.</font></p>
+      <h6><font size="-1">Event Interfaces Summary</font></h6>
+      <p>
+      <font size="-1">The following summarizes the interfaces and their methods. All method return values are of type</font> <code>HRESULT</code>.
+      </p><p><code>interface IGoogleDesktopSearchEventFactory : IDispatch</code>
+      </p><ul>
+          <li><font size="-1">Creates new event objects. </font>
+          </li><br>
+          <li><code>CreateEvent</code><font size="-1">: Create a new GDS event object based on a specified event schema. </font>
+              <ul>
+                  <li><font size="-1"><i>Arguments</i>: </font>
+                      <ul>
+                            <li><code>BSTR component_guid_or_progid</code><font size="-1">: The creating component's GUID. </font><code>B</code><code>STR schema_name</code><font size="-1">: Fully qualified name of the GDS event schema that defines the event (e.g. </font><code>Google.Desktop.IM</code><font size="-1">, not just </font><code>IM</code><font size="-1">). </font>
+                        </li>
+                            <li><code>[</code><code>out, retval] IDispatch **event</code><font size="-1">: Pointer used to return the newly created event object. </font></li>
+                    </ul>
+                  </li>
+                <li><font size="-1"><i>Returns</i>: </font>
+                    <ul>
+                          <li><font size="-1"><code>[</code></font><code>out, retval] IDispatch **event</code><font size="-1"> Pointer to the newly created event object. </font><code>S_OK</code> <font size="-1">on success.</font> <code>E_NO_SUCH_SCHEMA</code><font size="-1"> if an invalid</font> <code>schema_name</code><font size="-1"> value was given. </font>
+                      </li>
+                          <li><font size="-1">Otherwise, an appropriate error code</font></li></ul>
+        </li></ul></li></ul>
+      <code>interface IGoogleDesktopSearchEvent : IDispatch</code>
+	  <ul>
+        <li><font size="-1"><i>Constants:</i> </font>
+          <ul>
+            <li><code>enum EventFlags</code>
+                <ul>
+                  <li><code>EventFlagIndexable</code><font size="-1">: Sent to GDS with all event objects to indicate an indexable event. Value </font><code>0x00000001</code><font size="-1">. </font>
+                  </li><li><code>EventFlagHistorical</code><font size="-1">:
+Sent to GDS when the event is historical (generated from a crawl over
+files or other past created data) rather than created as a real time
+response to a currently happening event. Value </font><code>0x00000010</code><font size="-1">. </font></li>
+                </ul>
+            </li>
+          </ul><br>
+	    </li><li>
+            <code>AddProperty</code><font size="-1">: Adds a property-value pair to the event. </font>
+
+          <ul> <li><font size="-1"><i>Arguments</i>: </font>
+                <ul>
+                  <li><code>BSTR property_name</code><font size="-1">: Name of the property, which must exist in the event schema or else an error will result. </font>
+                  </li><li><code>VARIANT property_value</code><font size="-1">: Value set for the property, which must be an appropriate type as defined in the event schema. </font></li>
+                </ul>
+            </li><li><font size="-1"><i>Returns</i>: </font>
+                <ul>
+                  <li><code>S_OK</code><font size="-1"> if a success. </font><code>E_NO_SUCH_PROPERTY</code><font size="-1"> if the value specified for </font><code>property_name</code><font size="-1"> does not exist in the schema. Any error returned from </font><code>VariantChangeType</code><font size="-1"> if the value type does not match the event schema specification. </font>
+                  </li><li><font size="-1">Other appropriate error codes. </font></li>
+                </ul>
+            </li>
+          </ul><br>
+        </li><li><code>Send</code><font size="-1">: Sends the event to GDS. Once an event has been sent, you cannot resend it or add to or change its properties. </font>
+          <ul>
+            <li><font size="-1"><i>Arguments</i>: </font>
+                <ul>
+                  <li><code>long event_flags</code><font size="-1">: A bitwise OR of the relevant </font><code>EventFlags</code><font size="-1"> enumeration values. See the code template below. </font></li>
+                </ul>
+            </li><li><font size="-1"><i>Returns</i>: </font>
+                <ul>
+                  <li><code>S_OK</code><font size="-1"> if a success. </font></li>
+                  <li><code>E_COMPONENT_DISABLED</code> <font size="-1">if
+this component has been disabled. A user can disable the component from
+their GDS Preferences page (i.e. Don't index and store this data type).
+Also, GDS may automatically disable a component if the component
+crashes too often.</font></li>
+                  <li><code>S_INDEXING_PAUSED</code><font size="-1"> if the user has temporarily paused GDS. While GDS is paused, it does not accept any event objects.</font></li>
+                  <li><code>E_EVENT_TOO_LARGE</code><font size="-1"> if the total size of the event object is too big, even after the </font><code>content</code><font size="-1"> property has been truncated to 0, GDS rejects the event object.</font></li>
+                  <li><code>E_SERVICE_NOT_RUNNING</code><font size="-1"> if GDS has been turned off and cannot accept event objects.</font></li>
+                  <li><code>E_INVALID_EVENT_FLAGS</code><font size="-1"> if an event flag other than</font> <code>EventFlagIndexable</code><font size="-1"> or </font><code>EventFlagHistorical</code> <font size="-1"> was sent as an argument.</font></li>
+                  <li><font size="-1">Otherwise, an appropriate error code.</font></li>
+                </ul>
+          </li></ul>
+      </li></ul>
+      <font size="-1"><b>Event Interfaces Code Template</b></font>
+      <p><font size="-1">The following template uses the fictional</font> <code>MyComponent</code><font size="-1">, which deals with</font> <code>.myc</code> <font size="-1">text files. Variable names are prefaced by "mc" for "MyComponent".<br>
+        <br>
+           <font face="Courier New, Courier, mono">// Create an event factory object.<br>
+           CComPtr&lt;IGoogleDesktopSearchEventFactory&gt; mcEventFactory;<br>
+      HRESULT hr = mcFactory.CoCreateInstance(CLSID_GoogleDesktopSearch, NULL, CLSCTX_INPROC);<br>
+      if (FAILED(hr))<br>
+&nbsp;&nbsp; return hr;<br>
+      <br>
+      // Use the event factory to create an event object of the desired schema type.<br>
+      // A pointer to the new event is returned via the final CreateEvent parameter.<br>
+      CComPtr&lt;IDispatch&gt; mcEventDisp;<br>
+      hr = mcFactory-&gt;CreateEvent(CComBSTR(CLSID_MyComponent),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CComBSTR(L"Google.Desktop.TextFile"), &amp;mcEventDisp);<br>
+      if (FAILED(hr))<br>
+&nbsp;&nbsp; return hr;<br>
+&nbsp;&nbsp; <br>
+CComQIPtr&lt;IGoogleDesktopSearchEvent&gt; mcEvent(mcEventDisp);<br>
+ATLASSERT(mcEventDisp &amp;&amp; mcEvent);<br>
+      if (mcEvent == NULL)<br>
+&nbsp;&nbsp; return hr;<br>
+      <br>
+      // Set the event object's properties.<br>
+      if (SUCCEEDED(hr))<br>
+&nbsp;&nbsp; // mcFormatType is either "text/plain" or "text/html". This is required for all events.<br>
+&nbsp;&nbsp; hr = mcEvent-&gt;AddProperty(CComBSTR(L"format"), CComVariant(mcFormatType));<br>
+      if (SUCCEEDED(hr))<br>
+&nbsp;&nbsp; // mcContent is the indexable content from the file. This is required for all events.<br>
+&nbsp;&nbsp; hr = mcEvent-&gt;AddProperty(CComBSTR(L"content"), CComVariant(mcContent));<br>
+      <br>
+      // Set other event properties...<br>
+      <br>
+      if(FAILED(hr))<br>
+&nbsp;&nbsp; return hr;<br>
+      <br>
+      // If everything has worked so far, send the event object to GDS, with the type of event flag argument(s).<br>
+      hr = mcEvent-&gt;Send(EventFlagIndexable);<br>
+      // If a historical event, do instead<br>
+      // hr = mcEvent-&gt;Send(EventFlagIndexable | EventFlagHistorical);<br>
+      if (FAILED(hr))<br>
+&nbsp;&nbsp; // You may want to add code for handling the send()-specific error codes.<br>
+&nbsp;&nbsp; return hr;</font></font></p>
+      <h4><a name="handling" id="handling"></a>Handling GDS Crawler Notifications</h4>
+      <p><font size="-1"><font size="-1"><font size="-1">Components registered to receive crawler notifications from GDS must implement the </font></font></font><code>DGoogleDesktopSearchFileNotify</code><font size="-1"><font size="-1"><font size="-1"> dispinterface.</font></font></font> <code>HandleFile</code><font size="-1"><font size="-1"><font size="-1">
+is invoked when the crawler comes across a file registered to this
+component. The component is then responsible for instantiating the
+event factory and sending the appropriate event objects to GDS</font></font></font><font size="-1">.</font></p>
+      <font size="-1"><b>Crawler Notification Handler Interface Summary </b></font>
+      <p>
+      <font size="-1">The following summarizes the interface and its method. The method returns an</font> <code>HRESULT</code>.<br>
+      <br>
+
+      <code>dispinterface DGoogleDesktopSearchFileNotify </code>
+      </p><ul>
+        <li><code>HandleFile</code><font size="-1">: Invoked when the GDS crawler encounters a file with an extension registered to this component. </font>
+            <ul>
+              <li><font size="-1"><span style="font-style: italic;">Arguments</span>: </font>
+                  <ul>
+                    <li><code>BSTR full_path_to_file</code><font size="-1">: the file to handle. </font>
+                    </li><li><code>IDispatch *event_factory</code><font size="-1">: an event factory that will be used to create the event objects to send to the GDS engine. </font></li>
+                  </ul>
+              </li><li><font size="-1"><span style="font-style: italic;">Returns</span>: </font>
+                  <ul>
+                    <li><code>S_OK</code> <font size="-1">if the file was handled. </font>
+                    </li><li><font size="-1">Otherwise,
+an appropriate error. The crawler may do special handling for certain
+error values, such as retrying its indexing operation for </font><code>HRESULT_FROM_WIN32(ERROR_SHARING_VIOLATION)</code><font size="-1">,
+so components should be accurate when reporting errors. The crawler may
+also use any component returned error info object for logging and
+reporting purposes, so please do not skimp on error reporting through </font><code>SetErrorInfo</code><font size="-1">.</font></li>
+                  </ul>
+        </li></ul>
+      </li></ul>
+  <h6><font size="-1">Crawler Notification Handler Code Template</font></h6>
+<p><font size="-1">The following template uses the fictional </font><code>MyComponent</code><font size="-1">, which deals with </font><code>.myc</code> <font size="-1">text files. The prefix </font><code>mc</code><font size="-1"> is used before variable names to make them </font><code>MyComponent</code><font size="-1"> specific.<br>
+    <br>
+    <font face="Courier New, Courier, mono">STDMETHODIMP MyComponent::HandleFile(BSTR full_path_to_file, IDispatch *event_factory) {<br>
+    <br>
+&nbsp;&nbsp;// Event factory object to handle the passed in pointer from GDS.<br>
+&nbsp; CComPtr&lt;IGoogleDesktopSearchEventFactory&gt; mcEventFactory;<br>
+  <br>
+&nbsp;&nbsp;// Used to create an event object for this file to send back to GDS.<br>
+&nbsp; CComPtr&lt;IDispatch&gt; mcEventDisp;<br>
+  <br>
+&nbsp; HRESULT hr;<br>
+&nbsp; <br>
+&nbsp; hr&nbsp; = event_factory-&gt;QueryInterface(&amp;mcEventFactory);&nbsp; // Get the event factory<br>
+&nbsp; if (FAILED(hr))<br>
+&nbsp;&nbsp;&nbsp; return Error(L"No event factory", hr);<br>
+  <br>
+&nbsp; // Replace "Google.Desktop.TextFile" with the appropriate schema for your file.<br>
+&nbsp; hr = mcEventFactory-&gt;CreateEvent(CComBSTR(CLSID_MyComponent),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CComBSTR(L"Google.Desktop.TextFile"), &amp;mcEventDisp);<br>
+&nbsp; if (FAILED(hr))<br>
+&nbsp;&nbsp;&nbsp; return Error(L"Unable to create event", hr);<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp; CComQIPtr&lt;IGoogleDesktopSearchEvent&gt; mcEvent(mcEventDisp);<br>
+&nbsp; <br>
+&nbsp; ATLASSERT(mcEventDisp &amp;&amp; mcEvent);<br>
+&nbsp; if (mcEvent == NULL)<br>
+&nbsp;&nbsp;&nbsp; return Error(L"Event does not implement IGoogleDesktopSearchEvent", E_UNEXPECTED);<br>
+  <br>
+&nbsp;&nbsp;// Get indexable content from the file.<br>
+&nbsp;&nbsp;// Set the event object's properties.<br>
+&nbsp;&nbsp;// Send the event object to GDS.<br>
+  <br>
+  } </font></font></p>
+<h4><a name="howto" id="howto"></a>Writing and Distributing Your GDS Plug-in</h4>
+
+<h5>Developing a GDS Plug-in With Visual Studio</h5>
+
+<p><font size="-1">You can use Visual Studio 2003 to create a class
+template for your plug-in, such that you only have to fill in
+registration with GDS and, if necessary, how your </font><code>HandleFile</code><font size="-1"> method is implemented.</font></p>
+<p>
+  <font size="-1">The steps needed are:
+  </font>
+<font size="-1">
+<ol>
+  <li>Launch Visual Studio 2003. Select <b>File &gt;New Project</b>. Select <b>ATL project</b>.
+      <ol>
+        <li>Give the project an appropriate name
+        </li><li>Click <b>OK</b>.</li>
+      </ol></li>
+   <li>Select the <b>Application Settings</b> tab.
+      <ol>
+        <li>De-select <b>Attributed</b>, and leave all other settings alone.
+        </li><li>Click <b>Finish</b>.</li>
+      </ol></li>
+   <li>Your new project will open in a new solution. Right-click your project.
+      <ol>
+        <li>From the <b>Add</b> submenu, select <b>Add Class</b>.</li>
+        <li>From the resulting dialog, select <b>ATL Simple Object</b>.</li>
+	<li>Click <b>Open</b>.</li>
+        <li>Name your new class, for example <b>MyCrawlPlugin</b>.</li>
+        <li>Select the <b>Options</b> tab.</li>
+	<li>Select threading model <b>Both</b>.</li>
+	<li>Check the checkbox next to <b>ISupportErrorInfo</b> to enable it.</li>
+        <li>Click <b>Finish</b>.</li>
+      </ol></li>
+     <li>Your source file will open in Visual Studio.</li>
+  <li>Go to <b>Class View</b>.
+      <ol>
+        <li>Navigate to your main interface, for example <b>IMyCrawlPlugin</b> for your <b>MyCrawlPlugin</b> class.</li><li>Right click, and from the <b>Add</b> submenu select <b>Add Method</b>.</li><li>Add your <b>HandleFile</b> method, specifying both the <font face="courier">BSTR</font> and <font face="courier">IDispatch</font> arguments.</li>
+        <li>Click <b>Finish</b> when done.</li>
+      </ol>
+  </li>
+</ol>
+</font>
+</p><p><font size="-1">You now have a template for your class, so only GDS registration and the implementation of the</font> <code>HandleFile</code> <font size="-1">method remains</font>.</p>
+<h4><font size="-1">Distributing Your Plug-in</font></h4>
+<p><font size="-1">You should write your plug-in such that on user machines its code will be located in</font> <code>C:\Program Files\&lt;Company Name&gt;\&lt;Plug-in name&gt;.&lt;extension&gt;</code>.</p>
+
+<p><font size="-1">To submit your plug-in to Google for possible placement on the
+official GDS plug-in download page, click the <a href="http://desktop.google.com/pluginsubmit">Submit
+Software</a> link here or in this page's left-side menu. Fill out the form there, which includes an entry for uploading your code.</font></p>
+<div align="right"><font size="-2"><a href="#top">Back to top</a></font></div>
+<a name="searchapi" id="searchapi"></a> <b>GDS Developer Search API</b>
+<hr align="left" color="#3399cc" noshade="noshade" size="1">
+<h4><a name="requesting" id="requesting"></a>Requesting a Desktop Search</h4>
+<p><font size="-1">Your application requests a desktop search by sending an HTTP request that includes a </font><code>&amp;format=xml</code><font size="-1"> parameter to Google Desktop Search. For example, to search for "Google" you'd send something like:<br>
+    <br>
+    </font><code>http://127.0.0.1:4664/search&amp;s=1ftR7c_hVZKYvuYS-RWnFHk91Z0?q=Google&amp;format=xml</code><font size="-1"></font></p>
+<p>
+<font size="-1">To break this down:</font>
+</p><ul>
+  <li><code>http://127.0.0.1:4664/</code><font size="-1"> is the localhost address and GDS port. </font><code>search&amp;s=1ftR7c_hVZKYvuYS-RWnFHk91Z0</code><font size="-1"> is the search command and a security token. </font><code>?q=Google</code> <font size="-1">is the query term(s) parameter. </font></li><br>
+      <ul>
+        <li><font size="-1">If you want to search for more than one term, separate the terms with <code>+</code>s. For example, to search for both "Google" and "GDS", use:<br>
+        </font><code>?q=Google+GDS</code></li><br>
+        <li><font size="-1">If you want to search for a specific phrase, separate the terms with <code>+</code>s and surround the phrase with </font><code>%22</code><font size="-1">s. For example, to search for the phrase "Google Desktop Search", use: </font><code>?q=%22Google+Desktop+Search%22</code><font size="-1"> To search for the two phrases "Google Desktop Search" and "Copyright 2005", use </font><code>?q=%22Google+Desktop+Search%22+%22Copyright+2005%22</code> </li>
+      </ul><br>
+  <li><code>&amp;format=xml</code><font size="-1"> specifies that the HTTP response returns the search results in XML format, as described in the next section. </font></li>
+</ul>
+<p><font size="-1">Note that these requests <span style="font-style: italic;">only</span>
+do a desktop search, not both a web and desktop search.The search query
+URL, including your security token, is stored in the registry at:<br>
+  <br>
+  </font><code>HKEY_CURRENT_USER\Software\Google\Google Desktop\API\search_url</code></p>
+<p>
+<font size="-1">To use the example above, the stored query URL would be something like:</font>
+</p><pre>http://127.0.0.1:4664/search&amp;s=1ftR7c_hVZKYvuYS-RWnFHk91Z0?q=</pre>
+<font size="-1">To create a query, all you have to do is append your query terms and the final</font><code>&amp;format=xml</code><font size="-1"> parameter to the stored query URL. </font>
+<p><font size="-1">By default, an HTTP search response will only return the first ten results. You can specify a larger number by appending the</font> <code>&amp;num=</code><font size="-1">
+parameter, followed by the maximum number of results you'd like
+returned, to your query. There is no problem if the maximum number
+argument value is greater than the total number of search results; only
+the total number of results is returned, with no null "results".</font></p>
+<p><font size="-1">You can also specify at what point in the results
+the returned ones start. For example, if you're using the default value
+of 10 returned results and want to get back results 11-20 instead of
+the default results 1-10, append the</font> <code>&amp;start=</code> <font size="-1">parameter, followed by the position you want the results to start from. In this example, you'd specify</font> <code>&amp;start=1</code><code>0</code><font size="-1"> to indicate you want your returned results to start with the one after overall result 10. The</font> <code>&amp;start=</code><font size="-1"> and </font><code>&amp;num=</code> <font size="-1">parameters can both be used in a single query.</font></p>
+<h4><a name="results" id="results"></a>Desktop Search Results</h4>
+<p><font size="-1">When it receives a search request with the</font> <code>&amp;format=xml</code> <font size="-1">parameter, GDS returns results in an XML format. For example:</font></p>
+
+
+<code>
+  &lt;?xml version="1.0" encoding="UTF-8" standalone="yes" ?&gt;<br>
+&lt;results count="24945"&gt;<br>
+&lt;result&gt;<br>
+  &lt;category&gt;file&lt;/category&gt; <br>
+  &lt;id&gt;46384&lt;/id&gt; <br>
+  &lt;title&gt;SDK Developer Documentation&lt;/title&gt; <br>
+  &lt;url&gt;C:\Documents and Settings\me\My Documents\developerguide.html~&lt;/url&gt; <br>
+  &lt;time&gt;127543068856350000&lt;/time&gt; <br>
+&lt;snippet&gt;SDK Developer Documentation &lt;b&gt;Google&lt;/b&gt;
+Desktop Search SDK Developer Guide For Users Download Plug-ins Desktop
+Search Forum For Developers&lt;/snippet&gt; <br>
+  &lt;icon&gt;/file.gif&lt;/icon&gt; <br>
+  &lt;cache_url&gt;http://127.0.0.1:4664/... &lt;/cache_url&gt; <br>
+  &lt;/result&gt;<br>
+<br>
+...<br>
+<br>
+  &lt;/results&gt;<br>
+</code>
+
+<p><font size="-1">The one meta- results tag is</font> <code>&lt;results&gt;</code><font size="-1">, which contains the total number of items that matched the query as the value of a </font><code>count</code><font size="-1"> parameter; e.g. </font><code>&lt;results count=42&gt;</code><font size="-1">. This will be the largest number of possible </font><code>&lt;result&gt;</code>...<code>&lt;/result&gt;</code><font size="-1"> entries in the </font><code>&lt;results&gt;</code> <font size="-1">element. However, if the number of returned results (which defaults to at most 10 if you don't specify an </font><code>&amp;num=</code> <font size="-1">parameter with a larger value) is different from the </font><code>count</code><font size="-1"> value, the number of returned </font><code>&lt;result&gt;</code>...<code>&lt;/result&gt;</code> <font size="-1">entries will be the smaller of the two conflicting values. </font></p>
+<p><font size="-1">For example, let's say the </font><code>&lt;count&gt;</code><font size="-1"> value is 42. But you didn't give an </font><code>&amp;num=</code> <font size="-1">argument in the query. So, despite there being 42 items that matched the query, the XML response will only contain 10 </font><code>&lt;result&gt;</code>...<code>&lt;/result&gt;</code><font size="-1"> entries. If the</font> <code>&lt;count&gt;</code><font size="-1"> value was 6, which is smaller than the default 10 value, the XML response will only contain 6 </font><code>&lt;result&gt;</code>...<code>&lt;/result&gt;</code><font size="-1"> entries.</font></p>
+<p><font size="-1"> If you want to be sure to obtain all search results, your component will have to parse out the </font><code>&lt;count&gt;</code><font size="-1"> value and then issue additional HTTP GDS search requests to retrieve that many results via use of either the </font><code>&amp;start=</code> <font size="-1">or </font><code>&amp;num=</code><font size="-1"> parameters.</font></p>
+<p>
+<font size="-1">Each</font> <code>&lt;result&gt;</code> <font size="-1">may
+include the following fields, which may appear in any order. Which
+fields appear will depend on the result type; for example, the</font> <code>&lt;from&gt;</code> <font size="-1">entry
+should only show up in email or chat results. Each tag will contain a
+value; any tags not containing a value are not shown.
+</font>
+</p><ul>
+  <li><code>&lt;category&gt;</code><font size="-1"> contains the result's type, one of: </font>
+      <ul>
+        <li><code>email</code>
+        </li><li><code>chat </code>
+        </li><li><code>web</code>
+            </li><li><code>file</code> </li>
+      </ul>
+
+  </li><li><code>&lt;id&gt;</code><font size="-1">&nbsp; is the result's GDS internal identifier. </font>
+  </li><li><code>&lt;title&gt;</code><font size="-1">&nbsp; is the result's title, which varies depending on its type:
+                                </font>
+          <ul>
+            <li><font size="-1">Web page: the page's title. </font>
+            </li><li><font size="-1">Email: the message's Subject:. </font>
+            </li><li><font size="-1">File: its filename.</font>
+            </li><li><font size="-1">Chat: a line from the chat. </font></li>
+          </ul>
+        </li><li><code>&lt;url&gt;</code> <font size="-1">is
+the result's URL. For files and web pages, this is the usual path to
+the result. For chats and email messages, Google Desktop Search
+generates a URL for the location where it has stored its cached copy. </font>
+        </li><li><font size="-1">          </font><code>&lt;time&gt;</code><font size="-1">
+is the time value from the event that put this content into GDS.
+Usually this will be the time the content was indexed by GDS, but, for
+example, it could also be a file's last modified time. The format is
+per the Windows FILETIME structure; the number of 100-nanosecond
+intervals since January 1, 1601 represented as a 64-bit number.</font>
+        </li><li><code>&lt;snippet&gt;</code><font size="-1"> is a snippet from the result's content that contains at least one of the search terms. </font>
+        </li><li><code>&lt;icon&gt;</code><font size="-1">
+is a Google Desktop Search-relative URL to an icon representing this
+result or its type. This will either be one of the standard Google
+Desktop Search result type icons (envelope for email, Word icon for a
+Word file, etc.) or a favicon obtained from a website. </font>
+        </li><li><code>&lt;thumbnail&gt;</code> <font size="-1">is a relative URL to the icon for this result at the GDS webserver</font>        </li><li><code>&lt;from&gt;</code><font size="-1"> is the name of either the person an email message was from, or the other party in a Instant Message chat.</font>
+  </li><li><code>&lt;cache_url&gt;</code><font size="-1"> is the Google Desktop Search-relative URL of this result's internal cache page. </font></li>
+</ul>
+<p><font size="-1">If you want to experiment with queries to see what
+their XML format results look like, just do a desktop search from the
+browser. Then append </font><code>?format=xml</code><font size="-1">
+to the result's URL, hit Enter, and the same results will display in
+XML format in the browser. Two caveats; first, only the number of
+results that originally appeared on one results page will show up in
+the browser in XML. So, for example, if only 10 HTML format results
+show up in the browser on one results page, only 10 XML format results
+will appear in the browser, even if the value of</font> <code>&lt;total-results&gt;</code><font size="-1"> is, say, 42. Second, your browser must include an XML viewer, which IE and Firefox do by default.</font></p>
+<p><font size="-1">Finally, note that the XML results do <span style="font-style: italic;">not</span>
+include the search terms. If your application wants to also make use of
+the search terms, as well as the results, it will have to keep track of
+what they were.</font></p>
+<div align="right"><font size="-2"><a href="#top">Back to top</a></font></div>
+
+<a name="xmlschemas" id="xmlschemas"></a> <b>XML Event Schemas</b>
+<hr align="left" color="#3399cc" noshade="noshade" size="1">
+<p><font size="-1">The complete set of event schema definitions in XML (<a href="http://desktop.google.com/schemas.xml">download XML file</a>):</font></p>
+<div><font face="Courier New, Courier, mono" size="-1">&lt;!-- </font><font face="Courier New, Courier, mono" size="-1">Google Desktop Search Schemas </font><font face="Courier New, Courier, mono" size="-1"> --&gt;    </font></div>
+<div>
+  <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">- &lt;schemas&gt;</font></div>
+  <div>
+      <div style="margin-left: 1em; text-indent: -1.5em;"><font face="Courier New, Courier, mono" size="-1"><b>-</b> &lt;!-- </font><font face="Courier New, Courier, mono" size="-1">Generic indexable schema. The base parent schema of all other schemas </font><font face="Courier New, Courier, mono" size="-1"> --&gt;        </font></div>
+      <div>
+        <div style="margin-left: 1em; text-indent: -1.5em;"><font face="Courier New, Courier, mono" size="-1">- &lt;schema name="<b>Google.Desktop.Indexable</b>" description="<b>Indexable entity schema</b>"&gt;</font></div>
+        <div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>content</b>" description="<b>Indexable content</b>" type="<b>VT_BSTR</b>" required="<b>true</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp;  &lt;property name="<b>format</b>" description="<b>Mime type of the indexable content; text/plain, text/html are accepted types</b>" type="<b>VT_BSTR</b>" required="<b>true</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>native_size</b>" description="<b>The size of the original native content (in bytes)</b>" type="<b>VT_UI8</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>thumbnail</b>" description="<b>Thumbnail image of the content</b>" type="<b>VT_ARRAY</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>thumbnail_format</b>" description="<b>Mime type of the thumbnail; image/gif, image/jpeg, image/png are accepted types</b>" type="<b>VT_BSTR</b>" /&gt; </font></div>
+            </div>
+            <div style="margin-left: 1em; text-indent: -1.5em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;/schema&gt;</font></div>
+        </div>
+      </div>
+      <div style="margin-left: 1em; text-indent: -1.5em;"><font face="Courier New, Courier, mono" size="-1"><b>-</b> &lt;!-- </font><font face="Courier New, Courier, mono" size="-1">Generic email schema. Inherits from Google.Desktop.Indexable</font><font face="Courier New, Courier, mono" size="-1"> --&gt;        </font></div>
+      <div>
+        <div style="margin-left: 1em; text-indent: -1.5em;"><font face="Courier New, Courier, mono" size="-1">- &lt;schema name="<b>Google.Desktop.Email</b>" parent="<b>Google.Desktop.Indexable</b>" description="<b>Generic Email schema</b>"&gt;</font></div>
+        <div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>mail_header</b>" description="<b>Mail header of the e-mail message</b>" type="<b>VT_BSTR</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>from</b>" description="<b>Sender of the email message</b>" type="<b>VT_BSTR</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>subject</b>" description="<b>Subject of the email message</b>" type="<b>VT_BSTR</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>to</b>" description="<b>Recipient(s) of the email message</b>" type="<b>VT_BSTR</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>cc</b>" description="<b>Cc field of the email message</b>" type="<b>VT_BSTR</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>bcc</b>" description="<b>Bcc field of the email message</b>" type="<b>VT_BSTR</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>replyto</b>" description="<b>ReplyTo field of the email message</b>" type="<b>VT_BSTR</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>received</b>" description="<b>Received time of the email message</b>" type="<b>VT_DATE</b>" required="<b>true</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>folder_name</b>" description="<b>Folder name of the email message</b>" type="<b>VT_BSTR</b>" /&gt; </font></div>
+            </div>
+            <div style="margin-left: 1em; text-indent: -1.5em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;/schema&gt;</font></div>
+        </div>
+      </div>
+      <div style="margin-left: 1em; text-indent: -1.5em;"><font face="Courier New, Courier, mono" size="-1"><b>-</b> &lt;!-- </font><font face="Courier New, Courier, mono" size="-1">Generic file schema. Inherits from Google.Desktop.Indexable </font><font face="Courier New, Courier, mono" size="-1"> --&gt;        </font></div>
+      <div>
+        <div style="margin-left: 1em; text-indent: -1.5em;"><font face="Courier New, Courier, mono" size="-1">- &lt;schema name="<b>Google.Desktop.File</b>" parent="<b>Google.Desktop.Indexable</b>" description="<b>Generic File schema</b>"&gt;</font></div>
+        <div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>uri</b>" description="<b>Uri of the file</b>" type="<b>VT_BSTR</b>" required="<b>true</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>last_modified_time</b>" description="<b>Time of last modification</b>" type="<b>VT_DATE</b>" required="<b>true</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>title</b>" description="<b>Title of the file</b>" type="<b>VT_BSTR</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>author</b>" description="<b>Author of the file</b>" type="<b>VT_BSTR</b>" /&gt; </font></div>
+            </div>
+            <div style="margin-left: 1em; text-indent: -1.5em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;/schema&gt;</font></div>
+        </div>
+      </div>
+      <div style="margin-left: 1em; text-indent: -1.5em;"><font face="Courier New, Courier, mono" size="-1"><b>-</b> &lt;!-- </font><font face="Courier New, Courier, mono" size="-1">Generic IM schema. Inherits from Google.Desktop.Indexable </font><font face="Courier New, Courier, mono" size="-1"> --&gt;        </font></div>
+      <div>
+        <div style="margin-left: 1em; text-indent: -1.5em;"><font face="Courier New, Courier, mono" size="-1">- &lt;schema name="<b>Google.Desktop.IM</b>" parent="<b>Google.Desktop.Indexable</b>" description="<b>Generic Instant Message schema</b>"&gt;</font></div>
+        <div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>message_time</b>" description="<b>Time the instant message was received</b>" type="<b>VT_DATE</b>" required="<b>true</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>user_name</b>" description="<b>Name of the user (myself)</b>" type="<b>VT_BSTR</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>buddy_name</b>" description="<b>Name of the other person in the conversation</b>" type="<b>VT_BSTR</b>" required="<b>true</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>title</b>" description="<b>Title associated with the instant message(s)</b>" type="<b>VT_BSTR</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>conversation_id</b>" description="<b>Identifier hint to group messages from the same conversation</b>" type="<b>VT_UI4</b>" /&gt; </font></div>
+            </div>
+            <div style="margin-left: 1em; text-indent: -1.5em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;/schema&gt;</font></div>
+        </div>
+      </div>
+      <div style="margin-left: 1em; text-indent: -1.5em;"><font face="Courier New, Courier, mono" size="-1"><b>-</b> &lt;!-- </font><font face="Courier New, Courier, mono" size="-1">Generic web page schema. Inherits from Google.Desktop.File </font><font face="Courier New, Courier, mono" size="-1"> --&gt;          </font></div>
+      <div>
+        <div style="margin-left: 1em; text-indent: -1.5em;"><font face="Courier New, Courier, mono" size="-1">- &lt;schema name="<b>Google.Desktop.WebPage</b>" parent="<b>Google.Desktop.File</b>" description="<b>Generic web page schema</b>"&gt;</font></div>
+        <div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>bookmarked</b>" description="<b>Specifies if this web page is bookmarked</b>" type="<b>VT_BOOL</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>interaction_period</b>" description="<b>Specifies the amount of time the user interacted with the web page</b>" type="<b>VT_DATE</b>" /&gt; </font></div>
+            </div>
+            <div style="margin-left: 1em; text-indent: -1.5em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;/schema&gt;</font></div>
+        </div>
+      </div>
+      <div style="margin-left: 1em; text-indent: -1.5em;"><font face="Courier New, Courier, mono" size="-1"><b>-</b> &lt;!-- </font><font face="Courier New, Courier, mono" size="-1">Generic media file schema. Inherits from Google.Desktop.File </font><font face="Courier New, Courier, mono" size="-1"> --&gt;          </font></div>
+      <div>
+        <div style="margin-left: 1em; text-indent: -1.5em;"><font face="Courier New, Courier, mono" size="-1">- &lt;schema name="<b>Google.Desktop.MediaFile</b>" parent="<b>Google.Desktop.File</b>" description="<b>Generic media file schema</b>"&gt;</font></div>
+        <div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>width</b>" description="<b>Width of images and videos (in pixels)</b>" type="<b>VT_UI4</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>height</b>" description="<b>Height of images and videos (in pixels)</b>" type="<b>VT_UI4</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>data_rate</b>" description="<b>Average video bit rate for video files (in bits/sec)</b>" type="<b>VT_UI4</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>bit_rate</b>" description="<b>Average audio bit rate in audio and video files (in bits/sec)</b>" type="<b>VT_UI4</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>channels</b>" description="<b>Channel count for audio files</b>" type="<b>VT_UI4</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>length</b>" description="<b>Time length of music and video files (in nanosec)</b>" type="<b>VT_UI8</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>original_date</b>" description="<b>Original time stamp of media file from the media device</b>" type="<b>VT_DATE</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>album_title</b>" description="<b>Album title for music files</b>" type="<b>VT_BSTR</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>artist</b>" description="<b>Artist for media file</b>" type="<b>VT_BSTR</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>genre</b>" description="<b>Genre/category for media file</b>" type="<b>VT_BSTR</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>lyrics</b>" description="<b>Lyrics for music files</b>" type="<b>VT_BSTR</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>track_number</b>" description="<b>Number of tracks for music files</b>" type="<b>VT_UI4</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>comment</b>" description="<b>Comment about the audio file</b>" type="<b>VT_BSTR</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>info_tip</b>" description="<b>Info tip as reported from the shell</b>" type="<b>VT_BSTR</b>" /&gt; </font></div>
+            </div>
+            <div>
+              <div style="margin-left: 1em; text-indent: -1em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;property name="<b>year_published</b>" description="<b>Year published for media</b>" type="<b>VT_UI4</b>" /&gt; </font><font face="Courier New, Courier, mono" size="-1"></font></div>
+            </div>
+            <div style="margin-left: 1em; text-indent: -1.5em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;/schema&gt;</font></div>
+        </div>
+      </div>
+      <div style="margin-left: 1em; text-indent: -1.5em;"><font face="Courier New, Courier, mono" size="-1"><b>-</b> &lt;!-- </font><font face="Courier New, Courier, mono" size="-1">Generic text file schema. Inherits from Google.Desktop.File </font><font face="Courier New, Courier, mono" size="-1"> --&gt;
+
+        </font></div>
+      <div>
+        <div style="margin-left: 1em; text-indent: -1.5em;"><font face="Courier New, Courier, mono" size="-1">&nbsp; &lt;schema name="<b>Google.Desktop.TextFile</b>" parent="<b>Google.Desktop.File</b>" description="<b>Generic text file schema</b>" /&gt; </font></div>
+      </div>
+      <div><font face="Courier New, Courier, mono" size="-1">&lt;/schemas&gt;</font><font face="Courier New, Courier, mono" size="-1"><br>
+        <br>
+      </font></div>
+  </div>
+</div>
+<div align="right"><font size="-2"><a href="#top">Back to top</a></font></div>
+
+<a name="idlfile" id="idlfile"></a> <b>Interface Definitions</b>
+<hr align="left" color="#3399cc" noshade="noshade" size="1">
+<p><font size="-1">The contents of</font> <code>GoogleDesktopSearchAPI.idl</code><font size="-1">, where the various GDS search API interfaces are defined (<a href="http://desktop.google.com/GoogleDesktopSearchAPI.idl">download .idl file</a>):</font></p>
+<pre>// Copyright 2004-2005 Google Inc.
+// All Rights Reserved
+//
+import "oaidl.idl";
+import "ocidl.idl";
+
+
+cpp_quote("#include <winerror.h>")
+
+// GDS API specific HRESULTs
+cpp_quote("#define E_EXTENSION_REGISTERED
+           MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x0001)")
+cpp_quote("#define E_COMPONENT_NOT_REGISTERED
+           MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x0002)")
+cpp_quote("#define E_NO_SUCH_SCHEMA
+           MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x0003)")
+cpp_quote("#define E_NO_SUCH_PROPERTY
+           MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x0004)")
+cpp_quote("#define E_COMPONENT_DISABLED
+           MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x0005)")
+cpp_quote("#define E_COMPONENT_ALREADY_REGISTERED
+           MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x0006)")
+cpp_quote("#define S_INDEXING_PAUSED
+           MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_ITF, 0x0007)")
+cpp_quote("#define E_EVENT_TOO_LARGE
+           MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x0008)")
+cpp_quote("#define E_SERVICE_NOT_RUNNING
+           MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x0009)")
+cpp_quote("#define E_INVALID_EVENT_FLAGS
+           MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x000A)")
+
+[
+  object,
+  uuid(151857B2-26E0-4f4d-ACED-4F7E4B2065EF),
+  dual,
+  oleautomation,
+  pointer_default(unique)
+]
+// Components interested in crawl events call this to register their
+// event interest. Components who are only interested in generating
+// events needn't concern themselves with this interface.
+interface IGoogleDesktopSearchComponentRegistration: IDispatch
+{
+  // Must be invoked by every component interested in receiving
+  // crawler events for a file extension.
+  // @param extension_handled an extension this component wishes to
+  //        handle
+  // @return S_OK on success
+  //         E_EXTENSION_REGISTERED in case the extension conflicts with
+  //            an existing registration.
+  //         another appropriate error.
+  [id(0x00000001)]
+  HRESULT RegisterExtension(
+              [in] BSTR extension_handled);
+};
+
+[
+  object,
+  uuid(9B311E80-BC95-4518-A58C-446EC9A082B5),
+  dual,
+  oleautomation,
+  pointer_default(unique)
+]
+// Components are required to to call this interface to register
+// themselves with Google Desktop Search before they can send events
+// or receive crawl events.
+interface IGoogleDesktopSearchComponentRegister: IDispatch {
+  // Must be invoked by every component interested in generating
+  // events or receiving crawler events.
+  // @param component_guid_or_progid a string spelling out the
+  //        component's GUID or its ProgID.
+  // @param component_description is a VARIANT containing a SAFEARRY.
+  //        The safearray contains pairs, where element 2N is the name
+  //        of a descriptive parameter, and element 2N+1 is the value
+  //        of that parameter.
+  //        Mandated description parameters are:
+  //          - "Title" component title as displayed on the preference
+  //             page.
+  //          - "Description", component description as displayed on the
+  //             preferences page.
+  //          - "ICON" the component icon, which is a string pointing to
+  //             an ICON resource. This string is of the format <module>,<id>, e.g
+  //             "c:\program files\boo\comp.dll,23".
+  // @return S_OK on success, appropriate error on failure, such
+  //        as if the component's classID or appID is not registered,
+  //        if the component is prohibited by policy or whatever.
+  // @note for executables and plugins that wish to generate events, we
+  //        mandate that they register a classid and/or a progid, in
+  //        order to have a guaranteed unique identifier for the
+  //        event generator.
+  [id(0x00000001)]
+  HRESULT RegisterComponent(
+         [in] BSTR component_guid_or_progid,
+         [in] VARIANT component_description,
+         [out, retval] IGoogleDesktopSearchComponentRegistration
+                       **registration);
+
+  // Invoked by a component on unregistration.
+  // Cancels the component registration, along with all file types
+  // it has registed for.
+  [id(0x00000002)]
+  HRESULT UnregisterComponent(
+              [in] BSTR component_guid_or_progid);
+};
+
+[
+  object,
+  uuid(BDAC0047-4759-43a1-BA04-B148E1679E87),
+  dual,
+  oleautomation,
+  pointer_default(unique)
+]
+// Event interface, one of these is constructed for every event
+// generated by a component
+interface IGoogleDesktopSearchEvent: IDispatch
+{
+  enum EventFlags
+  {
+    // Set this flag on all events
+    EventFlagIndexable   = 0x00000001,
+    // Set this flag when the event is historical, i.e. generated from
+    // a crawl over files or other data generated in the past. This
+    // is as opposed to events generated in realtime from events
+    // presently occurring
+    EventFlagHistorical  = 0x00000010
+  };
+
+  // Add a typed property.
+  // @param property_name name of the property, the name must exist in
+  //    the selected schema.
+  // @param property_value value of the property, must be typed
+  //    appropriately for the selected schema.
+  // @return
+  //        S_OK in success,
+  //        E_NO_SUCH_PROPERTY if property does not exist,
+  //          any of the errors returned from VariantChangeType if the
+  //          type of the property does not match the type declared
+  //          in the schema, or cannot be coerced to the correct type.
+  //        Another appropriate error value.
+  [id(0x00000001)]
+  HRESULT AddProperty(BSTR property_name, VARIANT property_value);
+
+  // Sends the event.
+  // @param event_flags event flags, a bitwise OR of EventFlags
+  //        enumeration values.
+  // @note events sent as result of crawl event notifications should
+  //        have not set the EventFlagHistorical flag, since the
+  //        event might have been generated as result of
+  //        realtime filesystem changes.
+  // @note it is not possible to resend, nor to add properties to a
+  //        sent event.
+  [id(0x00000002)]
+  HRESULT Send(long event_flags);
+};
+
+[
+  object,
+  uuid(A79E51C6-DB2D-4a44-848E-A8EBB22E5337),
+  dual,
+  oleautomation,
+  pointer_default(unique)
+]
+// Factory interface to yield new events.
+interface IGoogleDesktopSearchEventFactory: IDispatch
+{
+  // Creates a new event to the specified schema.
+  // @param component_guid_or_progid a string spelling out the creating
+  //        component's GUID or its appID.
+  // @param schema_name the requested event schema.
+  // @return S_OK on success,
+  //        E_NO_SUCH_SCHEMA if schema does not exist,
+  //        otherwise an appropriate error
+  [id(0x00000001)]
+  HRESULT CreateEvent(
+              [in] BSTR component_guid_or_progid,
+              [in ]BSTR schema_name,
+              [out, retval] IDispatch **event);
+};
+
+
+[
+  uuid(A1DE6DB8-B20F-445c-BFDE-16C8D53A2FA1)
+]
+// This is implemented by components that wish to receive crawl
+// notifications
+// The component is responsible for instantiating the event
+// factory and issuing the appropriate events
+dispinterface DGoogleDesktopSearchFileNotify
+{
+properties:
+methods:
+  // Invoked when the crawler comes across a file registered to this
+  // component. Crawl components implement this function, then create
+  // and send zero or more events - as appropriate for the file.
+  // @param full_path_to_file the file to handle
+  // @param event_factory event factory for creating the events
+  // @return
+  //      S_OK if the file was handled,
+  //      an appropriate error otherwise.
+  // @note the crawler may do special handling for certain error values.
+  //      In particular it may retry indexing for some specific errors,
+  //      such as e.g.HRESULT_FROM_WIN32(ERROR_SHARING_VIOLATION), so
+  //      components should be as accurate in error reporting as
+  //      possible.
+  //      The crawler may also use any error info object returned from
+  //      the component for logging and reporting, so don't skimp on
+  //      error eporting through SetErrorInfo.
+  [id(0x00000001)]
+  HRESULT HandleFile(
+              [in] BSTR full_path_to_file,
+
+              [in] IDispatch *event_factory);
+};
+
+[
+  uuid(3D056FE7-EA8E-481a-B18F-0B02EBF6B3C1),
+  version(1.0),
+  helpstring("Google Desktop Search API 1.0 Type Library")
+]
+library GoogleDesktopSearchAPILib
+{
+  importlib("stdole2.tlb");
+
+  // pull these interfaces into the typelib
+  interface DGoogleDesktopSearchFileNotify;
+  interface IGoogleDesktopSearchEvent;
+
+  [
+    uuid(579822B3-44CD-4786-83E0-AE32BCB9E6B1),
+    helpstring("GoogleDesktopSearch Class")
+  ]
+  // Instantiate this class to get the event factory.
+  coclass GoogleDesktopSearch
+  {
+    [default] interface IGoogleDesktopSearchEventFactory;
+  };
+
+  [
+    uuid(BB8B07A0-B8D1-44e0-A262-C9B7212AEC68),
+    helpstring("GoogleDesktopSearchRegister Class")
+  ]
+  // Instantiate this class to get to the registration mechanism
+  coclass GoogleDesktopSearchRegister
+  {
+    [default] interface IGoogleDesktopSearchComponentRegister;
+  };
+};
+
+</id></module></winerror.h></pre>
+<div align="right"><font size="-2"><a href="#top">Back to top</a></font></div>
+
+<p></p></td>
+  </tr>
+  <tr valign="top">
+    <td colspan="2">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tbody><tr>
+          <td bgcolor="#3399cc"><img alt="" height="1" width="1"></td>
+        </tr>
+      </tbody></table>
+      <table bgcolor="#e8f4f7" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tbody><tr>
+          <td align="right" nowrap="nowrap"><div align="center"><font class="p" color="#000000" size="-1">©2005 Google - </font><font size="-1"><a href="http://desktop.google.com/privacypolicy.html">Privacy Policy</a> - <a href="http://desktop.google.com/eula">Terms and Conditions</a> - <a href="http://desktop.google.com/copyrights.html">Copyright Notices</a> </font></div></td>
+        </tr>
+      </tbody></table>
+	</td>
+  </tr>
+</tbody></table>
+</body></html>
