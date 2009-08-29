@@ -2,6 +2,8 @@
 ·--------------------------------------------------------------------·
 | C# Wrapper for Google Desktop Search Plugins                       |
 | Copyright (c) 2005, Manas Tungare. http://www.manastungare.com/    |
+| Copyright (c) 2009, gds-dot-net developers                         |
+| http://code.google.com/p/gds-dot-net/                              |
 ·--------------------------------------------------------------------·
 | This library is free software; you can redistribute it and/or      |
 | modify it under the terms of the GNU Lesser General Public         |
@@ -172,11 +174,16 @@ namespace Org.ManasTungare.Google.Desktop.Schemas{
     public void Send(EventFlags eventFlags) {
       AddRequiredProperties();
 
-      if (EventFlags.Historical == eventFlags) {
-        _gdsEvent.Send(EventFlagHistorical | EventFlagIndexable);
+      try {
+        if (EventFlags.Historical == eventFlags) {
+          _gdsEvent.Send(EventFlagHistorical | EventFlagIndexable);
+        }
+        else {
+          _gdsEvent.Send(EventFlagIndexable);
+        }
       }
-      else {
-        _gdsEvent.Send(EventFlagIndexable);
+      catch (COMException e) {
+        throw new GoogleDesktopException(e);
       }
     }
   }
