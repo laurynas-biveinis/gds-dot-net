@@ -34,5 +34,4 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyVersion("0.3")]
 
 [assembly: AssemblyDelaySign(false)]
-[assembly: AssemblyKeyFile("..\\..\\src\\GoogleDesktop.snk")]
 [assembly: AssemblyKeyName("")]
