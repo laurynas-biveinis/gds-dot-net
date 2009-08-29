@@ -2,6 +2,8 @@
 ·--------------------------------------------------------------------·
 | C# Wrapper for Google Desktop Search Plugins                       |
 | Copyright (c) 2005, Manas Tungare. http://www.manastungare.com/    |
+| Copyright (c) 2009, gds-dot-net developers                         |
+| http://code.google.com/p/gds-dot-net/                              |
 ·--------------------------------------------------------------------·
 | This library is free software; you can redistribute it and/or      |
 | modify it under the terms of the GNU Lesser General Public         |
@@ -29,7 +31,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyProduct(".NET Wrapper for Google Desktop Search")]
 [assembly: AssemblyCopyright("Manas Tungare, www.manastungare.com")]
 [assembly: AssemblyCulture("")]		
-[assembly: AssemblyVersion("0.2")]
+[assembly: AssemblyVersion("0.3")]
 
 [assembly: AssemblyDelaySign(false)]
 [assembly: AssemblyKeyFile("..\\..\\src\\GoogleDesktop.snk")]
