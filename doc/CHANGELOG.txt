@@ -4,7 +4,7 @@
 --------------------------------------------------------------------------
 
  VERSION HISTORY:
-   0.3   WIP           Fix COM exception handling in Indexable::Send.
+   0.3   2009-10-25    Fix COM exception handling in Indexable::Send.
                        Upgrade project to Visual Studio 2008. Fix 
                        compilation warnings. Make line endings consistent 
                        in source files.
