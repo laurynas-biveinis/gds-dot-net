@@ -27,11 +27,11 @@ using System.Runtime.CompilerServices;
 // associated with an assembly.
 [assembly: AssemblyTitle(".NET Wrapper for Google Desktop Search")]
 [assembly: AssemblyDescription(".NET Library that is a wrapper for Google Desktop Search")]
-[assembly: AssemblyCompany("Manas Tungare, www.manastungare.com")]
+[assembly: AssemblyCompany("http://code.google.com/p/gds-dot-net/")]
 [assembly: AssemblyProduct(".NET Wrapper for Google Desktop Search")]
-[assembly: AssemblyCopyright("Manas Tungare, www.manastungare.com")]
+[assembly: AssemblyCopyright("(C) .NET Wrapper for Google Desktop Search Author")]
 [assembly: AssemblyCulture("")]		
-[assembly: AssemblyVersion("0.3")]
+[assembly: AssemblyVersion("0.4")]
 
 [assembly: AssemblyDelaySign(false)]
 [assembly: AssemblyKeyName("")]
