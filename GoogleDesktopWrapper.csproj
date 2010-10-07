@@ -103,6 +103,7 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="src\Google\Desktop\GoogleDesktopException.cs">
       <SubType>Code</SubType>
     </Compile>
