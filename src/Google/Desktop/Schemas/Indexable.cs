@@ -25,6 +25,7 @@ using Interop.GoogleDesktopAPI2;
 
 namespace Org.ManasTungare.Google.Desktop.Schemas
 {
+    [CLSCompliant(false)]
     public abstract class Indexable
     {
 

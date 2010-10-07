@@ -19,6 +19,7 @@
 ·--------------------------------------------------------------------·
 */
 
+using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -35,3 +36,4 @@ using System.Runtime.CompilerServices;
 
 [assembly: AssemblyDelaySign(false)]
 [assembly: AssemblyKeyName("")]
+[assembly: CLSCompliant(true)]

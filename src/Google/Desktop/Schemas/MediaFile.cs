@@ -23,6 +23,7 @@ using System;
 
 namespace Org.ManasTungare.Google.Desktop.Schemas
 {
+    [CLSCompliant(false)]
     public class MediaFile : File
     {
         public int _width;

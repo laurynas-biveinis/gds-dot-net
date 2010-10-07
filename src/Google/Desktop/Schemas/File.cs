@@ -23,6 +23,7 @@ using System;
 
 namespace Org.ManasTungare.Google.Desktop.Schemas
 {
+    [CLSCompliant(false)]
     public class File : Indexable
     {
 

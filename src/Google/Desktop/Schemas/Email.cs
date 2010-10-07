@@ -22,7 +22,8 @@
 using System;
 
 namespace Org.ManasTungare.Google.Desktop.Schemas
-{
+{    
+    [CLSCompliant(false)]
     public class Email : Indexable
     {
 
