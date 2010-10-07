@@ -29,6 +29,7 @@ namespace Org.ManasTungare.Google.Desktop.Schemas
     /// a <code>GoogleDesktopException</code>, with error info available as 
     /// enums rather than OLE32 constants. 
     /// </summary>
+    [Serializable]
     public class PropertyNotSetException : Exception
     {
         public PropertyNotSetException()
