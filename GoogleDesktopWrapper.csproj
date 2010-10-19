@@ -137,7 +137,6 @@
     <Content Include="doc\CHANGELOG.txt" />
     <Content Include="doc\developerguide.html" />
     <Content Include="doc\LICENSE.txt" />
-    <Content Include="lib\Interop.GoogleDesktopAPI2.dll" />
     <None Include="src\GoogleDesktop.snk" />
   </ItemGroup>
   <ItemGroup>
