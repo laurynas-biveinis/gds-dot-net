@@ -19,9 +19,9 @@
 ·--------------------------------------------------------------------·
 */
 
+using GoogleDesktopAPILib;
 using System;
 using System.Runtime.InteropServices;
-using Interop.GoogleDesktopAPI2;
 
 namespace Org.ManasTungare.Google.Desktop.Schemas
 {
@@ -53,7 +53,7 @@ namespace Org.ManasTungare.Google.Desktop.Schemas
         protected const UInt32 E_COMPONENT_NOT_REGISTERED = 0x80040002;
 
         protected string _eventSchema = "Google.Desktop.Indexable";
-        protected IGoogleDesktopSearchEvent _gdsEvent;
+        protected IGoogleDesktopEvent _gdsEvent;
         protected Plugin _plugin; // that created us
 
         // Set to null to detect if properties were set or not.
@@ -70,7 +70,7 @@ namespace Org.ManasTungare.Google.Desktop.Schemas
 
 
             // Create an instance of Google's COM object ...
-            GoogleDesktopSearchClass gdsClass = new GoogleDesktopSearchClass();
+            GoogleDesktop gdsClass = new GoogleDesktop();
             object gdsEventDisp = null;
             try
             {
@@ -92,7 +92,7 @@ namespace Org.ManasTungare.Google.Desktop.Schemas
                     }
                 }
             }
-            _gdsEvent = (IGoogleDesktopSearchEvent)gdsEventDisp;
+            _gdsEvent = (IGoogleDesktopEvent)gdsEventDisp;
         }
 
         public string Content

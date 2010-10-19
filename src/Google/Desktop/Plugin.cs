@@ -19,8 +19,8 @@
 ·--------------------------------------------------------------------·
 */
 
+using GoogleDesktopAPILib;
 using System;
-using Interop.GoogleDesktopAPI2;
 using System.Runtime.InteropServices;
 
 
@@ -96,7 +96,7 @@ namespace Org.ManasTungare.Google.Desktop
             try
             {
                 // register/unregister the component
-                GoogleDesktopSearchRegisterClass gdsReg = new GoogleDesktopSearchRegisterClass();
+                GoogleDesktopRegistrar gdsReg = new GoogleDesktopRegistrar();
 
                 if (install)
                 {
@@ -108,7 +108,8 @@ namespace Org.ManasTungare.Google.Desktop
                                                       "Description", _description, 
                                                       "Icon", "no icon"
                                                     };
-                        gdsReg.RegisterComponent(_componentGuid, componentDesc);
+                        gdsReg.StartComponentRegistration(_componentGuid, componentDesc);
+                        gdsReg.FinishComponentRegistration();
                     }
                     catch (COMException e)
                     {
