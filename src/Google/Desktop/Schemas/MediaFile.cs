@@ -42,13 +42,13 @@ namespace Org.ManasTungare.Google.Desktop.Schemas
         public string _infoTip;
         public int _yearPublished;
 
-        public MediaFile(Plugin plugin)
-            : base(plugin, "Google.Desktop.MediaFile")
+        public MediaFile(IndexingComponent indexingComponent)
+            : base(indexingComponent, "Google.Desktop.MediaFile")
         {
         }
 
-        protected MediaFile(Plugin plugin, string eventSchema)
-            : base(plugin, eventSchema)
+        protected MediaFile(IndexingComponent indexingComponent, string eventSchema)
+            : base(indexingComponent, eventSchema)
         {
         }
 

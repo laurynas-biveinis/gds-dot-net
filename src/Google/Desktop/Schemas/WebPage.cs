@@ -29,13 +29,13 @@ namespace Org.ManasTungare.Google.Desktop.Schemas
         private bool _bookmarked;
         private DateTime _interactionPeriod;
 
-        public WebPage(Plugin plugin)
-            : base(plugin, "Google.Desktop.WebPage")
+        public WebPage(IndexingComponent indexingComponent)
+            : base(indexingComponent, "Google.Desktop.WebPage")
         {
         }
 
-        protected WebPage(Plugin plugin, string eventSchema)
-            : base(plugin, eventSchema)
+        protected WebPage(IndexingComponent indexingComponent, string eventSchema)
+            : base(indexingComponent, eventSchema)
         {
         }
 

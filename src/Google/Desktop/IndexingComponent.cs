@@ -26,7 +26,7 @@ using System.Runtime.InteropServices;
 
 namespace Org.ManasTungare.Google.Desktop
 {
-    public class Plugin
+    public class IndexingComponent
     {
         private const string IndexingRegistrarID = "GoogleDesktop.IndexingRegistration";
 
@@ -35,7 +35,7 @@ namespace Org.ManasTungare.Google.Desktop
         readonly string _componentGuid = "";
         readonly string _icon = "";
 
-        public Plugin(string name, string description, string componentGuid, string icon)
+        public IndexingComponent(string name, string description, string componentGuid, string icon)
         {
             _name = name;
             _description = description;

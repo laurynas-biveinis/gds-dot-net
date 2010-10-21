@@ -37,14 +37,14 @@ namespace Org.ManasTungare.Google.Desktop.Schemas
         private DateTime _received;
         private string _folderName;
 
-        public Email(Plugin plugin)
-            : base(plugin, "Google.Desktop.Email")
+        public Email(IndexingComponent indexingComponent)
+            : base(indexingComponent, "Google.Desktop.Email")
         {
             // Nothing
         }
 
-        protected Email(Plugin plugin, string eventSchema)
-            : base(plugin, eventSchema)
+        protected Email(IndexingComponent indexingComponent, string eventSchema)
+            : base(indexingComponent, eventSchema)
         {
             // Nothing
         }

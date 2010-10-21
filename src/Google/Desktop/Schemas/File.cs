@@ -32,13 +32,13 @@ namespace Org.ManasTungare.Google.Desktop.Schemas
         private string _title;
         private string _author;
 
-        public File(Plugin plugin)
-            : base(plugin, "Google.Desktop.File")
+        public File(IndexingComponent indexingComponent)
+            : base(indexingComponent, "Google.Desktop.File")
         {
         }
 
-        protected File(Plugin plugin, string eventSchema)
-            : base(plugin, eventSchema)
+        protected File(IndexingComponent indexingComponent, string eventSchema)
+            : base(indexingComponent, eventSchema)
         {
         }
 

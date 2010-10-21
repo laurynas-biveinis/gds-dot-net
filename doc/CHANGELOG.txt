@@ -12,6 +12,7 @@
                        Register Plugin as an indexing component that
                        does not handle any file extensions.
                        Fix icon handling in Plugin
+                       Rename Plugin to IndexingComponent
                        Other minor API changes
 
    0.3   2009-10-25    Fix COM exception handling in Indexable::Send.

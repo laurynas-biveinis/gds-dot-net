@@ -26,13 +26,13 @@ namespace Org.ManasTungare.Google.Desktop.Schemas
     [CLSCompliant(false)]
     public class TextFile : File
     {
-        public TextFile(Plugin plugin)
-            : base(plugin, "Google.Desktop.TextFile")
+        public TextFile(IndexingComponent indexingComponent)
+            : base(indexingComponent, "Google.Desktop.TextFile")
         {
         }
 
-        protected TextFile(Plugin plugin, string eventSchema)
-            : base(plugin, eventSchema)
+        protected TextFile(IndexingComponent indexingComponent, string eventSchema)
+            : base(indexingComponent, eventSchema)
         {
         }
     }

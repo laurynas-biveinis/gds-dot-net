@@ -34,13 +34,13 @@ namespace Org.ManasTungare.Google.Desktop.Schemas
         private string _buddyName;
 
 
-        public IM(Plugin plugin)
-            : base(plugin, "Google.Desktop.IM")
+        public IM(IndexingComponent indexingComponent)
+            : base(indexingComponent, "Google.Desktop.IM")
         {
         }
 
-        protected IM(Plugin plugin, string eventSchema)
-            : base(plugin, eventSchema)
+        protected IM(IndexingComponent indexingComponent, string eventSchema)
+            : base(indexingComponent, eventSchema)
         {
         }
 

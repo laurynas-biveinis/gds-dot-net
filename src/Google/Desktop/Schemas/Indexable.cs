@@ -54,7 +54,7 @@ namespace Org.ManasTungare.Google.Desktop.Schemas
 
         protected string _eventSchema = "Google.Desktop.Indexable";
         protected IGoogleDesktopEvent _gdsEvent;
-        protected Plugin _plugin; // that created us
+        protected IndexingComponent _indexingComponent; // that created us
 
         // Set to null to detect if properties were set or not.
         protected string _content = null;
@@ -63,9 +63,9 @@ namespace Org.ManasTungare.Google.Desktop.Schemas
         protected byte[] _thumbnail = null;
         protected ThumbnailFormats _thumbnailFormat = 0;
 
-        internal Indexable(Plugin plugin, string eventSchema)
+        internal Indexable(IndexingComponent indexingComponent, string eventSchema)
         {
-            _plugin = plugin;
+            _indexingComponent = indexingComponent;
             _eventSchema = eventSchema;
 
 
@@ -74,17 +74,17 @@ namespace Org.ManasTungare.Google.Desktop.Schemas
             object gdsEventDisp = null;
             try
             {
-                gdsEventDisp = gdsClass.CreateEvent(_plugin.ComponentGUID, _eventSchema);
+                gdsEventDisp = gdsClass.CreateEvent(_indexingComponent.ComponentGUID, _eventSchema);
             }
             catch (COMException e)
             {
                 if (E_COMPONENT_NOT_REGISTERED == (UInt32)e.ErrorCode)
                 {
-                    _plugin.Register();
+                    _indexingComponent.Register();
                     // Retry
                     try
                     {
-                        gdsEventDisp = gdsClass.CreateEvent(_plugin.ComponentGUID, _eventSchema);
+                        gdsEventDisp = gdsClass.CreateEvent(_indexingComponent.ComponentGUID, _eventSchema);
                     }
                     catch (COMException e2)
                     {

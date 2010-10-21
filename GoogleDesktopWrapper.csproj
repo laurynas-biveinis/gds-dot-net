@@ -101,9 +101,7 @@
     <Compile Include="src\Google\Desktop\GoogleDesktopException.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\Google\Desktop\Plugin.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="src\Google\Desktop\IndexingComponent.cs" />
     <Compile Include="src\Google\Desktop\Schemas\Email.cs">
       <SubType>Code</SubType>
     </Compile>
