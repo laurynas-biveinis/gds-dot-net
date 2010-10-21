@@ -1,12 +1,13 @@
 --------------------------------------------------------------------------
  C# Wrapper for Google Desktop Search Plugins
- Copyright (c) 2005, 2009, 2010 C# Wrapper for Google Desktop Search 
+ Copyright (c) 2005, 2009, 2010 C# Wrapper for Google Desktop Search 
  Plugins Developers, http://code.google.com/p/gds-dot-net/
 --------------------------------------------------------------------------
 
  VERSION HISTORY:
    0.4   TBA           Correctly translate COM to .NET errors.  Upgrade 
-					   project to Visual Studio 2010.
+                       project to Visual Studio 2010.  Use an up to date
+                       version of GD SDK.
 
    0.3   2009-10-25    Fix COM exception handling in Indexable::Send.
                        Upgrade project to Visual Studio 2008. Fix 
