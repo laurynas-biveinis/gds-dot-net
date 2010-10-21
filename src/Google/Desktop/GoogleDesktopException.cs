@@ -138,6 +138,7 @@ namespace Org.ManasTungare.Google.Desktop
         private static GoogleErrorCodes GetErrorCode(COMException e)
         {
             UInt32 errorCode = (UInt32)e.ErrorCode;
+            // The E_* constants used below are not constants from C# point of view, so, no switch. 
             if (errorCode == E_EXTENSION_REGISTERED) return GoogleErrorCodes.E_EXTENSION_REGISTERED;
             else if (errorCode == E_COMPONENT_NOT_REGISTERED) return GoogleErrorCodes.E_COMPONENT_NOT_REGISTERED;
             else if (errorCode == E_NO_SUCH_SCHEMA) return GoogleErrorCodes.E_NO_SUCH_SCHEMA;
