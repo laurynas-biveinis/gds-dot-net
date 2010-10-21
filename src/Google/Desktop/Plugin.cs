@@ -28,20 +28,19 @@ namespace Org.ManasTungare.Google.Desktop
 {
     public class Plugin
     {
-        private const UInt32 E_COMPONENT_NOT_REGISTERED = 0x80040002;
-        private const UInt32 E_COMPONENT_ALREADY_REGISTERED = 0x80040006;
+        private const string IndexingRegistrarID = "GoogleDesktop.IndexingRegistration";
 
-        string _name = "";
-        string _description = "";
-        string _componentGuid = "";
-        string _icon = "";
+        readonly string _name = "";
+        readonly string _description = "";
+        readonly string _componentGuid = "";
+        readonly string _icon = "";
 
-        public Plugin(string name, string description, string componentGuid)
+        public Plugin(string name, string description, string componentGuid, string icon)
         {
             _name = name;
             _description = description;
             _componentGuid = componentGuid;
-            _icon = "no icon";
+            _icon = icon;
         }
 
         public string Name
@@ -74,24 +73,19 @@ namespace Org.ManasTungare.Google.Desktop
             {
                 return _icon;
             }
-            set
-            {
-                _icon = value;
-            }
         }
 
-        public bool Register()
+        public void Register()
         {
-            return DoRegistration(true);
+            DoRegistration(true);
         }
 
-        public bool Unregister()
+        public void Unregister()
         {
-            return DoRegistration(false);
+            DoRegistration(false);
         }
 
-        // The DoRegistration(...) method was copied from sample code provided by Google, Inc.
-        private bool DoRegistration(bool install)
+        private void DoRegistration(bool install)
         {
             try
             {
@@ -100,47 +94,27 @@ namespace Org.ManasTungare.Google.Desktop
 
                 if (install)
                 {
-                    try
-                    {
-                        // register with GDS
-                        object[] componentDesc = new object[6] {
+                    // register with GDS
+                    object[] componentDesc = new object[6] {
                                                       "Title", _name, 
                                                       "Description", _description, 
-                                                      "Icon", "no icon"
+                                                      "Icon", _icon
                                                     };
-                        gdsReg.StartComponentRegistration(_componentGuid, componentDesc);
-                        gdsReg.FinishComponentRegistration();
-                    }
-                    catch (COMException e)
-                    {
-                        // check if not already registered
-                        if ((UInt32)e.ErrorCode != E_COMPONENT_ALREADY_REGISTERED)
-                        { // E_COMPONENT_ALREADY_REGISTERED
-                            return false;
-                        }
-                    }
+                    gdsReg.StartComponentRegistration(_componentGuid, componentDesc);
+                    IGoogleDesktopRegisterIndexingPlugin indexReg 
+                        = (IGoogleDesktopRegisterIndexingPlugin)gdsReg.GetRegistrationInterface(IndexingRegistrarID);
+                    indexReg.RegisterIndexingPlugin(null);
+                    gdsReg.FinishComponentRegistration();
                 }
                 else
                 {
-                    try
-                    {
-                        gdsReg.UnregisterComponent(_componentGuid);
-                    }
-                    catch (COMException e)
-                    {
-                        // check if not already unregistered
-                        if ((UInt32)e.ErrorCode != E_COMPONENT_NOT_REGISTERED)
-                        { // 
-                            throw new GoogleDesktopException(e);
-                        }
-                    }
+                    gdsReg.UnregisterComponent(_componentGuid);
                 }
             }
             catch (COMException e)
             {
                 throw new GoogleDesktopException(e);
             }
-            return true;
         }
     }
 }
