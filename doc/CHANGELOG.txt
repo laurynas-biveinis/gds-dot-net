@@ -13,6 +13,8 @@
                        does not handle any file extensions.
                        Fix icon handling in Plugin
                        Rename Plugin to IndexingComponent
+                       Make IndexingComponent provide an event factory 
+                       instead of each event creating own copy.
                        Other minor API changes
 
    0.3   2009-10-25    Fix COM exception handling in Indexable::Send.

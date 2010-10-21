@@ -26,6 +26,7 @@ using System.Runtime.InteropServices;
 
 namespace Org.ManasTungare.Google.Desktop
 {
+    [CLSCompliant(false)]
     public class IndexingComponent
     {
         private const string IndexingRegistrarID = "GoogleDesktop.IndexingRegistration";
@@ -34,6 +35,8 @@ namespace Org.ManasTungare.Google.Desktop
         readonly string _description = "";
         readonly string _componentGuid = "";
         readonly string _icon = "";
+
+        private IGoogleDesktopEventFactory eventFactory = null;
 
         public IndexingComponent(string name, string description, string componentGuid, string icon)
         {
@@ -114,6 +117,25 @@ namespace Org.ManasTungare.Google.Desktop
             catch (COMException e)
             {
                 throw new GoogleDesktopException(e);
+            }
+        }
+
+        public IGoogleDesktopEventFactory EventFactory
+        {
+            get
+            {
+                if (eventFactory == null)
+                {
+                    try
+                    {
+                        eventFactory = new GoogleDesktop();
+                    }
+                    catch (COMException e)
+                    {
+                        throw new GoogleDesktopException(e);
+                    }
+                }
+                return eventFactory;
             }
         }
     }

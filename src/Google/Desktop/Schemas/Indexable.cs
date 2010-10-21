@@ -68,31 +68,15 @@ namespace Org.ManasTungare.Google.Desktop.Schemas
             _indexingComponent = indexingComponent;
             _eventSchema = eventSchema;
 
-
-            // Create an instance of Google's COM object ...
-            GoogleDesktop gdsClass = new GoogleDesktop();
-            object gdsEventDisp = null;
             try
             {
-                gdsEventDisp = gdsClass.CreateEvent(_indexingComponent.ComponentGUID, _eventSchema);
+                _gdsEvent = (IGoogleDesktopEvent)indexingComponent.EventFactory.CreateEvent(_indexingComponent.ComponentGUID, 
+                                                                                            _eventSchema);
             }
             catch (COMException e)
             {
-                if (E_COMPONENT_NOT_REGISTERED == (UInt32)e.ErrorCode)
-                {
-                    _indexingComponent.Register();
-                    // Retry
-                    try
-                    {
-                        gdsEventDisp = gdsClass.CreateEvent(_indexingComponent.ComponentGUID, _eventSchema);
-                    }
-                    catch (COMException e2)
-                    {
-                        throw new GoogleDesktopException(e2);
-                    }
-                }
+                throw new GoogleDesktopException(e);
             }
-            _gdsEvent = (IGoogleDesktopEvent)gdsEventDisp;
         }
 
         public string Content
