@@ -50,7 +50,6 @@ namespace Org.ManasTungare.Google.Desktop.Schemas
 
         protected const int EventFlagIndexable = 0x00000001;
         protected const int EventFlagHistorical = 0x00000010;
-        protected const UInt32 E_COMPONENT_NOT_REGISTERED = 0x80040002;
 
         protected string _eventSchema = "Google.Desktop.Indexable";
         protected IGoogleDesktopEvent _gdsEvent;
