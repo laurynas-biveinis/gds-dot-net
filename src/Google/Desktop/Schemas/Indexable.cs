@@ -21,7 +21,9 @@
 
 using GoogleDesktopAPILib;
 using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace Org.ManasTungare.Google.Desktop.Schemas
 {
@@ -197,17 +199,12 @@ namespace Org.ManasTungare.Google.Desktop.Schemas
         public void Send(EventFlags eventFlags)
         {
             AddRequiredProperties();
-
+            int gdEventFlags = EventFlagIndexable;
+            if (eventFlags == EventFlags.Historical)
+                gdEventFlags |= EventFlagHistorical;
             try
             {
-                if (EventFlags.Historical == eventFlags)
-                {
-                    _gdsEvent.Send(EventFlagHistorical | EventFlagIndexable);
-                }
-                else
-                {
-                    _gdsEvent.Send(EventFlagIndexable);
-                }
+                _gdsEvent.Send(gdEventFlags);
             }
             catch (COMException e)
             {
