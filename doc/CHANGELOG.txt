@@ -15,6 +15,9 @@
                        Rename Plugin to IndexingComponent
                        Make IndexingComponent provide an event factory 
                        instead of each event creating own copy.
+                       Provide IGoogleDesktopEventEx as an alternative
+                       to automatically-imported IGoogleDesktopEvent2 
+                       with usable SendEx method.
                        Other minor API changes
 
    0.3   2009-10-25    Fix COM exception handling in Indexable::Send.
